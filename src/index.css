@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-sellzy-teal: #00796B;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    @apply text-gray-900 antialiased;
+  }
+}
+
+/* ==========================================================
+   THE FOOTER REVERSE "S-CURVE" SCOOP
+   Position this exactly at the top of the teal box.
+========================================================== */
+@utility footer-curve {
+  position: absolute;
+  top: -50px; /* Must match the curve size */
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-bottom-left-radius: 50px;
+  /* Paint the outside with a shadow to create the scoop. 
+     MATCH THIS COLOR to your page background (#ffffff) */
+  box-shadow: -20px 20px 0 20px var(--color-sellzy-teal); 
+  pointer-events: none;
+}
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+::-webkit-scrollbar{
+  display: none;
+
+}
