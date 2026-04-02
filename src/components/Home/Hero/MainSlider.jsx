@@ -15,12 +15,12 @@ const MainSlider = () => {
     { title: "The Platform Perfection Collection.", desc: "Look and feel your best every day.", img: hero1, color: '#FFF', textc: '#000' },
   ];
 
-  // 1. Setup expanded slides [Last, 1, 2, 3, 4, First]
   const expandedSlides = [slides[slides.length - 1], ...slides, slides[0]];
   
-  const [currentIndex, setCurrentIndex] = useState(1); // Start at real first slide
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const transitionDuration = 700; // ms
+  const transitionDuration = 700;
+  const autoplayDelay = 5000; // 5 seconds
 
   const handleNext = useCallback(() => {
     if (currentIndex >= expandedSlides.length - 1) return;
@@ -34,22 +34,30 @@ const MainSlider = () => {
     setCurrentIndex((prev) => prev - 1);
   };
 
-  // 2. The "Magic" Infinite Jump
+  // --- NEW: Autoplay Logic ---
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, autoplayDelay);
+
+    // Cleanup timer on unmount or when index changes to prevent overlaps
+    return () => clearInterval(timer);
+  }, [handleNext]);
+  // ---------------------------
+
   useEffect(() => {
     let timeout;
-    // If we reached the fake last slide (the clone of slide 1)
     if (currentIndex === expandedSlides.length - 1) {
       timeout = setTimeout(() => {
-        setIsTransitioning(false); // Disable animation
-        setCurrentIndex(1); // Jump to real slide 1
+        setIsTransitioning(false);
+        setCurrentIndex(1);
       }, transitionDuration);
     }
 
-    // If we reached the fake first slide (the clone of slide 4)
     if (currentIndex === 0) {
       timeout = setTimeout(() => {
         setIsTransitioning(false);
-        setCurrentIndex(expandedSlides.length - 2); // Jump to real slide 4
+        setCurrentIndex(expandedSlides.length - 2);
       }, transitionDuration);
     }
 
@@ -57,20 +65,17 @@ const MainSlider = () => {
   }, [currentIndex, expandedSlides.length]);
 
   return (
-    <div className="relative group lg:rounded-2xl  h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden  ">
+    <div className="relative group lg:rounded-2xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
       
-      {/* Slider Container */}
       <div
-        className={`flex h-full group${isTransitioning ? "transition-transform ease-in-out" : ""}`}
+        className={`flex h-full ${isTransitioning ? "transition-transform ease-in-out" : ""}`}
         style={{ 
             transform: `translateX(-${currentIndex * 100}%)`,
             transitionDuration: isTransitioning ? `${transitionDuration}ms` : '0ms'
         }}
       >
         {expandedSlides.map((slide, index) => (
-          <div key={index} className="min-w-full  relative flex items-center px-10 md:px-20">
-            
-            {/* Content */}
+          <div key={index} className="min-w-full relative flex items-center px-10 md:px-20">
             <div className="z-10 relative max-w-lg">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 {slide.title}
@@ -81,14 +86,14 @@ const MainSlider = () => {
               <ActionButton text="Shop Now" color={slide.color} textc={slide.textc} />
             </div>
 
-          <div className="absolute inset-0 z-0">
-  <img 
-    src={slide.img} 
-    alt="Hero" 
-    className="w-full h-full object-cover"
-  />
-  <div className="absolute inset-0 bg-black/30 z-10" />
-</div>
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={slide.img} 
+                alt="Hero" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/30 z-10" />
+            </div>
           </div>
         ))}
       </div>
@@ -101,7 +106,7 @@ const MainSlider = () => {
         <ChevronRight size={24} />
       </button>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+      <div className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 z-30 md:flex gap-3">
         {slides.map((_, i) => {
           const isActive = (currentIndex === i + 1) || 
                            (currentIndex === 0 && i === slides.length - 1) ||

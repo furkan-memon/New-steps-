@@ -178,37 +178,43 @@ export const ForgotPasswordForm = ({setPanel}) => (
     </div>
   </>
 );
-export const Menu = ({setPanel}) => (
-  <>
-    <div className="w-full p-6 max-w-md mx-auto">
-      <div className="flex justify-center mb-6">
-        <img
-          src={forgotim}
-          alt="Forgot"
-          className=""
-        />
+import { NavLink } from "react-router-dom";
+
+
+export const Menu = ({setPanel}) => {
+  return (
+    <div className="w-full max-w-md mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-md p-4">
+
+      <div className="flex flex-col gap-4 text-sm font-semibold text-gray-700">
+
+        {["/", "/collection", "/about", "/contact"].map((path, i) => {
+          const names = ["Home", "Collection", "About", "Contact"];
+
+          return (
+            <NavLink
+              key={path}
+              to={path}
+              onClick={()=> setPanel(null)}
+              className={({ isActive }) =>
+                `group flex items-center justify-between px-4 py-3 rounded-xl transition duration-300 ${
+                  isActive
+                    ? "bg-teal-100 text-teal-700"
+                    : "hover:bg-gray-100 hover:text-teal-700"
+                }`
+              }
+            >
+              {names[i]}
+
+              {/* Arrow animation */}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </NavLink>
+          );
+        })}
+
       </div>
-      
-      
-      <div className="mb-4">
-        <input
-          type="email"
-          placeholder="Email *"
-          className="w-full border border-gray-200 text-[12px] rounded-full px-5 py-3 outline-none focus:ring-2 focus:ring-teal-500"
-        />
-      </div>
-      
-        
-            
-      <button className="w-full bg-[#088178] text-[13px] text-white py-2 rounded-full font-medium shadow hover:bg-[#0b5e58] transition">
-       Reset Password
-     </button>
-      <p className="text-start ml-3 text-sm font-semibold text-gray-600 mt-6">
-        <button onClick={()=> setPanel('login')} className="text-teal-700 ml-2 font-medium hover:underline">
-          
-         Beck To Login 
-        </button>
-      </p>
+
     </div>
-  </>
-);
+  );
+};

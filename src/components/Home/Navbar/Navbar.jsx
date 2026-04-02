@@ -56,7 +56,7 @@ const [panel, setPanel] = useState(null);
              </Link>
 
              <Cart />
-             <div  onClick={() => setPanel("menu")} className="sm:hidden  ">
+             <div  onClick={() => setPanel("menu")} className="lg:hidden  ">
              <Menu />
              </div>
            </div>
@@ -65,9 +65,7 @@ const [panel, setPanel] = useState(null);
       <SidePanel
         open={panel !== null}
         onClose={() => setPanel(null)}
-        title="Menu"
-        
-      >
+        title="Menu">
         <PanelContent panel={panel} setPanel={setPanel} />
       </SidePanel>
       

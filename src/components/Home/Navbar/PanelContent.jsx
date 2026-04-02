@@ -20,7 +20,7 @@ export default function PanelContent({ panel, setPanel }) {
       {panel === "register" && <RegisterForm setPanel={setPanel} />}
       {panel === "forgot" && <ForgotPasswordForm setPanel={setPanel} />}
       {panel === "cart" && <CartPanel setPanel={setPanel} />}
-      {panel === "manu" && <Menu setPanel={setPanel} />}
+      {panel === "menu" && <Menu setPanel={setPanel} />}
        
     </div>
   );

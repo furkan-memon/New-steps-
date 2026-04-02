@@ -20,8 +20,7 @@ const Cart = () => {
         open={panel !== null}
         onClose={() => setPanel(null)}
         title="Cart Products"
-        
-      >
+         >
         <PanelContent panel={panel} setPanel={setPanel} />
       </SidePanel>
     </>
