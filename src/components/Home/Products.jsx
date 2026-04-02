@@ -1,6 +1,6 @@
 import React, { useEffect, useRef,useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 
 import product6 from "../../assets/images/product-image-6.png";
 import product7 from "../../assets/images/product-image-7 (1).png";
@@ -172,3 +172,6 @@ const TopOfferSection = () => {
 };
 
 export default TopOfferSection;
+
+
+

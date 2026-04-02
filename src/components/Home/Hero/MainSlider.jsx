@@ -57,7 +57,7 @@ const MainSlider = () => {
   }, [currentIndex, expandedSlides.length]);
 
   return (
-    <div className="relative group lg:rounded-2xl  h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden  ">
+    <div className="relative group lg:rounded-2xl  h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden  ">
       
       {/* Slider Container */}
       <div

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 
 import prod1 from "../../assets/images/product-image-11.png";
 import prod2 from "../../assets/images/product-image-12.png";

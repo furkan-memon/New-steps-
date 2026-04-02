@@ -4,7 +4,7 @@ import {
   ChevronRight
   
 } from "lucide-react";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 import product1 from "../../assets/images/multi-vendor-slider-image-1.png";
 import product2 from "../../assets/images/multi-vendor-slider-image-2.png";
 import product3 from "../../assets/images/multi-vendor-slider-image-3.png";

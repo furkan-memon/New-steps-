@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 import {
   ChevronLeft,
   ChevronRight
