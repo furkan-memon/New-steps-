@@ -11,10 +11,10 @@ const Navbar = () => {
 const [panel, setPanel] = useState(null);
   return (
    <header
-  className={`fixed top-0 left-0 w-full z-[1000] bg-white shadow transition-all duration-500 
-  `}
+  className=' top-0 left-0   z-[1000] container mx-auto    transition-all duration-500 
+  '
 >
-      <div className=" block max-w-[1440px]  mx-auto px-4  py-4">
+      <div className=" block container bg-white  lg:bg-white/60  lg:mt-4  px-4  py-4">
         <div className="flex items-center justify-between gap-8">
           <div>
       <Link to="/">
@@ -25,7 +25,7 @@ const [panel, setPanel] = useState(null);
         />
       </Link>
     </div>
-   <ul className='hidden md:flex gap-8 text-sm text-gray-700'>
+   <ul className='hidden lg:flex gap-8 text-sm text-gray-700'>
                 {["/", "/collection", "/about", "/contact"].map((path, index) => {
                     const names = ["HOME", "COLLECTION", "ABOUT", "CONTACT"]
                     return (

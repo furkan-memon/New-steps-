@@ -11,12 +11,10 @@ import ShopByBrands from "../components/Home/ShopBrands";
 import CategoryFavorites from "../components/Home/CategoryFavorites ";
 import CarProducts from '../components/Home/CareProducts'
 import ListingBlog from '../components/Home/LatestBlog'
-import Footer from "../components/Home/footer";
-import Nesletter from '../components/Home/nesletter'
 const Home = () => {
   return (
         
-      <main className=" mx-auto ">
+      <main className="   container mx-auto">
         <Hero />
         <Products />
         <LovedProduct />

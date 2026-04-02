@@ -42,7 +42,7 @@ const SidePanel = ({ open, onClose, title, children }) => {
       <div
         ref={panelRef}
         className=
-            "absolute right-0 top-0 h-[90%] overflow-scroll m-7 rounded-2xl md:w-[50vw] sm:w-[70vw] w-[80vw] bg-white shadow-xl flex flex-col"
+            "absolute right-0 top-0 h-[90%] overflow-scroll m-7 rounded-2xl lg:w-[30vw] md:w-[50vw] sm:w-[70vw] w-[80vw] bg-white shadow-xl flex flex-col"
            
       >
       <div className="flex justify-between border-b sticky bg-white border-gray-300  top-0 z-20 py-3 px-5 items-center">

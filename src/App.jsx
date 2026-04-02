@@ -18,7 +18,7 @@ const App = () => {
     }
   return (
     
-    <div className="  overflow-hidden  bg-white">
+    <div className="  max-w-9xl overflow-hidden  bg-white">
       <Navbar />
        <Routes>
         <Route path='/' element={<Home />} />
