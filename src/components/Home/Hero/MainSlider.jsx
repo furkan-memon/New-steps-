@@ -8,12 +8,36 @@ import hero3 from "../../../assets/images/h1.png";
 import hero4 from "../../../assets/images/hero1.png";
 
 const MainSlider = () => {
-  const slides = [
-    { title: "Comfortable Steps for Growing Feet", desc: "Fun ● Comfortable ● Durable", img: hero3, color: '#2E6F4E', textc: '#FFF' },
-    { title: "Active Comfort. All Day Play.", desc: "The new Junior Sport Collection.", img: hero2, color: '#FFF', textc: '#000' },
-    { title: "Playfull Steps Start Here", desc: "Introducing the Boby Bear Collection.", img: hero4, color: '#2E6F4E', textc: '#FFF' },
-    { title: "The Platform Perfection Collection.", desc: "Look and feel your best every day.", img: hero1, color: '#FFF', textc: '#000' },
-  ];
+const slides = [
+  {
+    title: "Comfortable Steps for Growing Feet",
+    desc: "Fun ● Comfortable ● Durable",
+    img: hero3,
+    color: "#37B34A",   // green matches nature image 🌿
+    textc: "#FFFFFF"
+  },
+  {
+    title: "Active Comfort. All Day Play.",
+    desc: "The new Junior Sport Collection.",
+    img: hero2,
+    color: "#0F3558",   // dark blue for contrast on light shoe
+    textc: "#FFFFFF"
+  },
+  {
+    title: "Playful Steps Start Here",
+    desc: "Introducing the Baby Bear Collection.",
+    img: hero4,
+    color: "#2FA4D6",   // fresh sky blue works with warm bg
+    textc: "#FFFFFF"
+  },
+  {
+    title: "The Platform Perfection Collection.",
+    desc: "Look and feel your best every day.",
+    img: hero1,
+    color: "#0F3558",   // premium dark tone
+    textc: "#FFFFFF"
+  },
+];
 
   const expandedSlides = [slides[slides.length - 1], ...slides, slides[0]];
   
@@ -65,7 +89,7 @@ const MainSlider = () => {
   }, [currentIndex, expandedSlides.length]);
 
   return (
-    <div className="relative group lg:rounded-2xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
+    <div className="relative group mt-16 lg:mt-17.5 xl:mt-20  h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
       
       <div
         className={`flex h-full ${isTransitioning ? "transition-transform ease-in-out" : ""}`}
@@ -76,7 +100,7 @@ const MainSlider = () => {
       >
         {expandedSlides.map((slide, index) => (
           <div key={index} className="min-w-full relative flex items-center px-10 md:px-20">
-            <div className="z-10 relative max-w-lg">
+            <div className="z-10 relative   max-w-lg">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 {slide.title}
               </h1>
@@ -98,11 +122,11 @@ const MainSlider = () => {
         ))}
       </div>
 
-      <button onClick={handlePrev} className="absolute left-6 top-1/2 -translate-y-1/2 z-30 bg-white/30 hover:bg-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
+      <button onClick={handlePrev} className="absolute text-white md:text-black left-6 top-1/2 -translate-y-1/2 z-30 md:bg-white/30 md:hover:bg-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
         <ChevronLeft size={24} />
       </button>
 
-      <button onClick={handleNext} className="absolute right-6 top-1/2 -translate-y-1/2 z-30 bg-white/30 hover:bg-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
+      <button onClick={handleNext} className="absolute text-white md:text-black right-6 top-1/2 -translate-y-1/2 z-30 md:bg-white/30 md:hover:bg-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
         <ChevronRight size={24} />
       </button>
 

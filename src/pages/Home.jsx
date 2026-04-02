@@ -14,7 +14,7 @@ import ListingBlog from '../components/Home/LatestBlog'
 const Home = () => {
   return (
         
-      <main className="   container mx-auto">
+      <main className="   ">
         <Hero />
         <Products />
         <LovedProduct />

@@ -48,30 +48,36 @@ const [panel, setPanel] = useState(null);
 
     <div
   ref={menuRef}
-  className="absolute -right-20  w-56 bg-white shadow-lg rounded-md
-  opacity-0 translate-y-5 pointer-events-none z-[999]"
+  className="absolute -right-20 w-56 bg-white shadow-lg rounded-xl
+  border border-gray-100 opacity-0 translate-y-5 pointer-events-none z-[999]"
 >
-    
-         <ul className='py-2  text-sm'>
-                        {["login", "register", "forgot", "SetPassword"].map((path, index) => {
-                            const panel = ["Login", "Register", "Forgot Password", "Set Password"]
-                            const icon = [ <Lock size={10} />, <Contact size={10} />, <KeyRound size={10} />,<RectangleEllipsis  size={10}/>]
-                            return (
-                                
-                                  <li className="px-4 ">
-                                       <span onClick={() => setPanel(path)} className="py-2 px-2 rounded-2xl cursor-pointer hover:bg-gray-100 flex items-center gap-2">
-                                        <span  className="bg-gray-200 p-2 rounded-full">
-                                           {icon[index]}
-                                        </span>
-                                    {panel[index]}
-                                    </span>
-                                    
+  <ul className="py-2 text-sm">
+    {["login", "register", "forgot", "SetPassword"].map((path, index) => {
+      const panel = ["Login", "Register", "Forgot Password", "Set Password"];
+      const icon = [
+        <Lock size={14} />,
+        <Contact size={14} />,
+        <KeyRound size={14} />,
+        <RectangleEllipsis size={14} />,
+      ];
 
-                                  </li>
-                            )
-                        })}
-                    </ul>
-      </div>
+      return (
+        <li key={index} className="px-3">
+          <span
+            onClick={() => setPanel(path)}
+            className="py-2 px-3 rounded-xl cursor-pointer flex items-center gap-3
+            text-gray-600 hover:bg-[#2FA4D6]/10 hover:text-[#0F3558] transition"
+          >
+            <span className="bg-[#2FA4D6]/10 text-[#0F3558] p-2 rounded-full">
+              {icon[index]}
+            </span>
+            {panel[index]}
+          </span>
+        </li>
+      );
+    })}
+  </ul>
+</div>
     </li>
    <SidePanel
   open={panel !== null}

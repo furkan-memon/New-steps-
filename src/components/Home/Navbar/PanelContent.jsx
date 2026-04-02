@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { LoginForm, RegisterForm, ForgotPasswordForm, Menu } from "./panle"
 import CartPanel from "./CartPanle";
-
 export default function PanelContent({ panel, setPanel }) {
   const contentRef = useRef();
 
@@ -20,8 +19,8 @@ export default function PanelContent({ panel, setPanel }) {
       {panel === "register" && <RegisterForm setPanel={setPanel} />}
       {panel === "forgot" && <ForgotPasswordForm setPanel={setPanel} />}
       {panel === "cart" && <CartPanel setPanel={setPanel} />}
-      {panel === "menu" && <Menu setPanel={setPanel} />}
-       
+      {panel === "menu" && <Menu setPanel={setPanel} />  }
+      
     </div>
   );
 }
