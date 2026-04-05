@@ -1,41 +1,65 @@
 import { Heart, Home, ShoppingCart, User } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const MobileBottomNav = ({ panel, setPanel }) => {
-
-  // 🔥 THIS LINE IS KEY
-  if (panel !== null) return null;
+const MobileBottomNav = () => {
+  const navigate = useNavigate();
 
   return (
     <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-[1000] lg:hidden">
-      
-      <div className="flex justify-around py-3">
 
-        <NavLink to="/" className="flex flex-col items-center text-xs">
+      <div className="flex justify-around py-2">
+
+        {/* HOME */}
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex flex-col items-center text-xs ${
+              isActive ? "text-black" : "text-gray-500"
+            }`
+          }
+        >
           <Home size={22} />
-          Home
+          <span>Home</span>
         </NavLink>
 
-        <NavLink to="/cart" className="flex flex-col items-center text-xs">
+        {/* CART */}
+        <NavLink
+          to="/cart"
+          className={({ isActive }) =>
+            `flex flex-col items-center text-xs ${
+              isActive ? "text-black" : "text-gray-500"
+            }`
+          }
+        >
           <ShoppingCart size={22} />
-          Cart
+          <span>Cart</span>
         </NavLink>
 
-        <NavLink to="/wishlist" className="flex flex-col items-center text-xs">
+        {/* WISHLIST */}
+        <NavLink
+          to="/wishlist"
+          className={({ isActive }) =>
+            `flex flex-col items-center text-xs ${
+              isActive ? "text-black" : "text-gray-500"
+            }`
+          }
+        >
           <Heart size={22} />
-          Wishlist
+          <span>Wishlist</span>
         </NavLink>
 
+        {/* PROFILE */}
         <button
-          onClick={() => setPanel("login")}
+          onClick={() => navigate("/login")}
           className="flex flex-col items-center text-xs text-gray-500"
         >
           <User size={22} />
-          Profile
+          <span>Profile</span>
         </button>
 
       </div>
     </div>
   );
 };
-export default MobileBottomNav
+
+export default MobileBottomNav;

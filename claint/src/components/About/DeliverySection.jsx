@@ -4,7 +4,7 @@ import sideImg from "../../assets/images/woman-bg.png";
 
 export default function DeliverySection() {
   return (
-    <section className=" py-20">
+    <section className=" container mx-auto py-20">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">

@@ -18,9 +18,9 @@ const ProductCard = ({ products }) => {
   return (
     <>
       {products.map((product, index) => (
-      <Link to='/product-details'>
+      <Link  key={`${product.id}-${index}`} to='/product-details'>
         <div
-          key={index}
+        
           className="min-w-[280px]  group relative hover:scale-102 py-3 bg-white rounded-2xl  flex flex-col justify-between   transition-all duration-300  "
         >
           {/* IMAGE */}

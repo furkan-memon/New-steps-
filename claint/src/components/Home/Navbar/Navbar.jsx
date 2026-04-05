@@ -2,29 +2,58 @@ import React from "react";
 import Login from "./Login.jsx";
 import Cart from "./Cart.jsx";
 import { Link, NavLink } from "react-router-dom";
-import { Heart, Menu, Search, Star } from "lucide-react";
+import { Heart, Menu, Search, Star, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import SidePanel from "./Sidepanle.jsx";
-import PanelContent from "./PanelContent.jsx";
+
 import Sarchinp from "./Searchinp.jsx";
 const Navbar = () => {
   const [panel, setPanel] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 10);
+  };
+
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
   return (
     <header className="top-0 left-0 relative w-full">
       <div
-        className="fixed top-0 left-0 w-full z-[1004] 
+        className=" top-0 left-0  w-full z-[1004] 
 bg-white border-b border-gray-200
 px-4 py-4"
       >
-        <div className="flex items-center justify-between gap-8 container mx-auto">
+        <div className="flex relative items-center justify-between gap-8 container mx-auto">
           {/* Logo */}
-          <Link to="/">
-            <img
-              src="images/logo.png"
-              alt="logo"
-              className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto object-contain"
-            />
-          </Link>
+<Link
+  to="/"
+  className={`${isScrolled ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
+>
+  <img
+    src="images/B&WLOGO.png"
+    alt="logo"
+    className="max-h-12 md:max-h-14 lg:max-h-16 xl:max-h-16 w-auto left-0 object-contain"
+  />
+</Link>
+
+  <div
+    className={`fixed left-4 top-3 z-[1005] transition-opacity duration-300
+      ${isScrolled ? "opacity-100" : "opacity-0 pointer-events-none"}
+    `}
+     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  >
+    <div className="bg-white rounded-full w-14 h-14 flex items-center justify-center shadow-sm">
+      <img
+        src="images/logo.png"
+        alt="logo"
+        className="h-12 w-auto object-cover ml-3"
+      />
+    </div>
+  </div>
 
           {/* Menu */}
           <ul className="hidden lg:flex gap-8 text-[18px] font-semibold">
@@ -56,7 +85,10 @@ px-4 py-4"
               <Sarchinp />
             </div>
             <div className="hidden lg:flex items-center gap-6">
-              <Login />
+              <Link to='/login'>
+              
+              <User />
+              </Link>
 
               <Link to="/Wishlist">
                 <Heart size={22} className=" transition" />
@@ -76,13 +108,7 @@ px-4 py-4"
         </div>
       </div>
 
-      <SidePanel
-        open={panel !== null}
-        onClose={() => setPanel(null)}
-        title={panel === "Menu"}
-      >
-        <PanelContent panel={panel} setPanel={setPanel} />
-      </SidePanel>
+     
     </header>
   );
 };

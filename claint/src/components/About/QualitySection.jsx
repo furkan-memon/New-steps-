@@ -1,80 +1,79 @@
 import { Truck, Headphones, RotateCcw } from "lucide-react";
-import cornerShape from "../../assets/images/image copy.png";
-import cornerShape2 from "../../assets/images/image.png";
 
 export default function QualitySection() {
   return (
-    <section className="relative py-24 bg-white">
+    <section className="py-12 bg-white">
 
-      <div className="relative bg-[#FFD6EF] md:rounded-[50px] py-24  px-10
-      \ max-w-7xl mx-auto " >
+      <div className="container mx-auto px-6">
 
-        <div className="absolute mt-5 lg:mt-0 lg:before:content-['']
-    lg:before:absolute
-    lg:before:-bottom-4
-    lg:before:-left-25
-    lg:before:w-[145px]
-    lg:before:h-[100%]
-    lg:before:bg-[url('/images/shape.png')]
-    lg:before:bg-contain
-    lg:before:bg-no-repeat 
-     lg:after:content-['']
-  lg:after:absolute
-  lg:after:-bottom-0
-  lg:after:-right-33
-  lg:after:w-[145px]
-  lg:after:h-[100%]
-  lg:after:bg-[url('/images/imagecopy.png')]
-  lg:after:bg-contain
-  lg:after:bg-no-repeat
+        {/* Top Strip */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 border-b pb-6">
 
-  -top-4 left-1/2 -translate-x-1/2 lg:bg-white px-12 py-5 text-center">
-          <h2 className="text-2xl font-semibold text-gray-900"> 
-            Quality is our priority
+          <h2 className="text-3xl font-semibold text-gray-900">
+            Why Choose New Steps
           </h2>
-          <p className="text-sm whitespace-nowrap text-gray-500 mt-1">
-            Because you deserve nothing less than the best.
+
+          <p className="text-gray-500 text-sm mt-3 md:mt-0">
+            Designed for comfort, built for little adventures
           </p>
-          
-   
+
         </div>
 
-        <div className="mt-6 grid md:grid-cols-3 gap-10">
+        {/* Features Row */}
+        <div className="flex flex-col md:flex-row gap-6">
 
-          <div className="bg-white rounded-2xl shadow-md p-10 text-center transition hover:shadow-lg">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Truck size={24} className="text-gray-800" />
+          {/* Item 1 */}
+          <div className="flex-1 flex items-start gap-4 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+
+            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+              <Truck size={18} className="text-gray-600" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-3">
-              Free Shipping
-            </h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              Enjoy the Convenience of Free Shipping on Every Order
-            </p>
+
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Free Shipping
+              </h3>
+              <p className="text-gray-500 text-sm mt-1">
+                Fast and free delivery across India
+              </p>
+            </div>
+
           </div>
 
-          <div className="bg-white rounded-2xl shadow-md p-10 text-center transition hover:shadow-lg">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Headphones size={24} className="text-gray-800" />
+          {/* Item 2 */}
+          <div className="flex-1 flex items-start gap-4 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+
+            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+              <Headphones size={18} className="text-gray-600" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-3">
-              24x7 Support
-            </h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              Round-the-Clock Assistance, Anytime You Need It
-            </p>
+
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Customer Support
+              </h3>
+              <p className="text-gray-500 text-sm mt-1">
+                Friendly support whenever you need help
+              </p>
+            </div>
+
           </div>
 
-          <div className="bg-white rounded-2xl shadow-md p-10 text-center transition hover:shadow-lg">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <RotateCcw size={24} className="text-gray-800" />
+          {/* Item 3 */}
+          <div className="flex-1 flex items-start gap-4 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+
+            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+              <RotateCcw size={18} className="text-gray-600" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-3">
-              30 Days Return
-            </h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              Your Satisfaction is Our Priority: Return Any Product Within 30 Days
-            </p>
+
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">
+                Easy Returns
+              </h3>
+              <p className="text-gray-500 text-sm mt-1">
+                Hassle-free returns within 7–10 days
+              </p>
+            </div>
+
           </div>
 
         </div>

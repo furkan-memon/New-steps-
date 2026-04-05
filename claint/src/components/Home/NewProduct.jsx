@@ -115,20 +115,40 @@ const TopOfferSection = () => {
   };
 
   return (
-    <section className="py-12 container mx-auto  mx-auto px-3 ">
-      <div className="flex flex-col md:flex-row md:items-end justify-center items-center md:justify-between mb-8 gap-4">
-        <div>
-          <h2 className="md:text-3xl text-2xl font-medium  md:font-semibold text-[#0F3558]">
+    <section className="py-12  container mx-auto  px-6 ">
+            <div className="flex  md:flex-row md:items-end  justify-between mb-8 gap-4">
+
+        
+          <h2 className="md:text-3xl text-2xl font-medium  md:font-semibold text-black">
             BEST SELLERS
           </h2>
-        
-        </div>
+         <Link to='./collection'>
+       <button className="group bg-black text-white mt-2 px-3 py-2 md:px-5 md:py-2.5 rounded-xl flex items-center gap-2 text-[15px] md:text-sm font-bold transition-all shadow-md shadow-[#00796B]/20">
+  View All 
+  <span className="bg-white text-black rounded-full p-1 transition-transform duration-300 group-hover:rotate-45">
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="7" y1="17" x2="17" y2="7"></line>
+      <polyline points="7 7 17 7 17 17"></polyline>
+    </svg>
+  </span>
+      </button>
+      </Link>
+       
      
         </div>
      
 
       <div className="relative ">
-              <button
+                         <button
                 onClick={() => scroll("right")}
                 className="absolute -right-5 top-1/2  -translate-y-1/2 bg-white  shadow-md rounded-full p-2 z-10"
               >
@@ -154,26 +174,7 @@ const TopOfferSection = () => {
 
       </div>
      <div className="flex justify-end mt-4">
-      <Link to='./collection'>
-       <button className="group bg-black text-white mt-2 px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold transition-all shadow-md shadow-[#00796B]/20">
-  View All 
-  <span className="bg-white text-black rounded-full p-1 transition-transform duration-300 group-hover:rotate-45">
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="7" y1="17" x2="17" y2="7"></line>
-      <polyline points="7 7 17 7 17 17"></polyline>
-    </svg>
-  </span>
-      </button>
-      </Link>
+     
         </div>
     </section>
   );

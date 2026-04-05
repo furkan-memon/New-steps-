@@ -88,7 +88,7 @@ const slides = [
   }, [currentIndex, expandedSlides.length]);
 
   return (
-    <div className="relative  group mt-16 lg:mt-17.5 xl:mt-25  rounded-2xl  h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
+    <div className="relative  group    h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
       
       <div
         className={`flex h-full ${isTransitioning ? "transition-transform ease-in-out" : ""}`}
@@ -98,7 +98,7 @@ const slides = [
         }}
       >
         {expandedSlides.map((slide, index) => (
-          <div key={index} className="min-w-full container  mx-auto relative flex items-center px-10 md:px-20">
+          <div key={index} className="min-w-full  relative flex items-center px-10 md:px-20">
             <div className="z-10 relative   text-start   max-w-lg">
               <h1 className="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 {slide.title}

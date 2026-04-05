@@ -15,9 +15,7 @@ export default function PanelContent({ panel, setPanel }) {
 
   return (
     <div ref={contentRef}>
-      {panel === "login" && <LoginForm setPanel={setPanel} />}
-      {panel === "register" && <RegisterForm setPanel={setPanel} />}
-      {panel === "forgot" && <ForgotPasswordForm setPanel={setPanel} />}
+      
       {panel === "cart" && <CartPanel setPanel={setPanel} />}
       {panel === "menu" && <Menu setPanel={setPanel} />  }
       

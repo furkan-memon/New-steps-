@@ -9,7 +9,7 @@ const Home = () => {
   return (
         
         
-      <main className="">
+      <main className=" ">
         <Hero />
         <LovedProduct />
         <NewProduct />

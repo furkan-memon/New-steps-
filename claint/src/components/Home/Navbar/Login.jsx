@@ -1,101 +1,207 @@
-import React, { useRef,useState } from "react";
-import { Lock, ChevronDown, Contact, KeyRound, RectangleEllipsis, User } from "lucide-react";
-import gsap from "gsap";
-import SidePanel from "./Sidepanle";
-import { ForgotPasswordForm, LoginForm, RegisterForm } from "./panle";
-import PanelContent from "./PanelContent";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 const Login = () => {
-  const menuRef = useRef();
-const [panel, setPanel] = useState(null);
-  const showMenu = () => {
-    gsap.to(menuRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.3,
-      pointerEvents: "auto",
-      ease: "power2.out",
-    });
-  };
+    const [step, setStep] = useState('Login');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [otp, setOtp] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [user, setUser] = useState(null);
 
-  const hideMenu = () => {
-    gsap.to(menuRef.current, {
-      opacity: 0,
-      y: 20,
-      duration: 0.3,
-      pointerEvents: "none",
-      ease: "power2.in",
-    });
-  };
+    const navigate = useNavigate();
 
-  return (
-    <>
-    <li
-      className="relative   inline-block"
-      onMouseEnter={showMenu}
-      onMouseLeave={hideMenu}
-    >
-      
-      <div className="flex gap-3 items-center cursor-pointer">
-        {/* <div className="bg-[#ffc107] px-3 py-3 rounded-full">
-          <Lock size={16} />
-        </div> */}
-<User />
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
 
-       
+        // SIGN UP
+        if (step === 'Sign Up') {
+            const userData = { name, email };
+            setUser(userData);
+            toast.success("Account Created Successfully");
+            navigate('/');
+        }
 
-      </div>
+        // LOGIN
+        else if (step === 'Login') {
+            const userData = { name: email.split('@')[0], email };
+            setUser(userData);
+            toast.success("Login Successful");
+            navigate('/');
+        }
 
-    <div
-  ref={menuRef}
-  className="absolute -right-20 w-56 bg-white shadow-lg rounded-xl
-  border border-gray-100 opacity-0 translate-y-5 pointer-events-none z-[999]"
->
-  <ul className="py-2 text-sm">
-    {["login", "register", "forgot", "SetPassword"].map((path, index) => {
-      const panel = ["Login", "Register", "Forgot Password", "Set Password"];
-      const icon = [
-        <Lock size={14} />,
-        <Contact size={14} />,
-        <KeyRound size={14} />,
-        <RectangleEllipsis size={14} />,
-      ];
+        // SEND OTP
+        else if (step === 'Forgot Password') {
+            toast.success("OTP Sent (Demo: 1234)");
+            setStep('Verify OTP');
+        }
 
-      return (
-        <li key={index} className="px-3">
-          <span
-            onClick={() => setPanel(path)}
-            className="py-2 px-3 rounded-xl cursor-pointer flex items-center gap-3
-            text-gray-600 hover:bg-[#2FA4D6]/10 hover:text-[#0F3558] transition"
-          >
-            <span className="bg-[#2FA4D6]/10 text-[#0F3558] p-2 rounded-full">
-              {icon[index]}
-            </span>
-            {panel[index]}
-          </span>
-        </li>
-      );
-    })}
-  </ul>
-</div>
-    </li>
-   <SidePanel
-  open={panel !== null}
-  onClose={() => setPanel(null)}
-  title={
-    panel === "login"
-      ? "Log In"
-      : panel === "register"
-      ? "Crteate Your Account"
-      : "Forgot Password"
-  }
->
-  <PanelContent panel={panel} setPanel={setPanel} />
-</SidePanel>
+        // VERIFY OTP
+        else if (step === 'Verify OTP') {
+            if (otp === '1234') {
+                toast.success("OTP Verified");
+                setStep('Reset Password');
+            } else {
+                toast.error("Invalid OTP");
+            }
+        }
 
-    </>
-    
-  );
-};
+        // RESET PASSWORD
+        else if (step === 'Reset Password') {
+            if (newPassword !== confirmPassword) {
+                toast.error("Passwords do not match");
+                return;
+            }
 
-export default Login;
+            toast.success("Password Changed Successfully");
+            setStep('Login');
+        }
+    }
+
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+        }
+    }, [user, navigate]);
+
+    return (
+        <div className="py-16 px-4 flex justify-center">
+
+  <form
+    onSubmit={onSubmitHandler}
+    className="w-full max-w-md bg-white p-8 shadow-sm border"
+  >
+
+                {/* Heading */}
+                <div className="text-center mb-6">
+                    <h2 className="text-2xl font-medium">{step}</h2>
+                </div>
+
+                {/* SIGN UP */}
+                {step === 'Sign Up' && (
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full border px-4 py-3 mb-4"
+                        required
+                    />
+                )}
+
+                {/* EMAIL */}
+                {(step === 'Login' || step === 'Sign Up' || step === 'Forgot Password') && (
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full border px-4 py-3 mb-4"
+                        required
+                    />
+                )}
+
+                {/* PASSWORD */}
+                {(step === 'Login' || step === 'Sign Up') && (
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full border px-4 py-3 mb-2"
+                        required
+                    />
+                )}
+
+                {/* FORGOT */}
+                {step === 'Login' && (
+                    <p
+                        onClick={() => setStep('Forgot Password')}
+                        className="text-sm underline cursor-pointer mb-4"
+                    >
+                        Forgot your password?
+                    </p>
+                )}
+
+                {/* OTP */}
+                {step === 'Verify OTP' && (
+                    <input
+                        type="text"
+                        placeholder="Enter OTP"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        className="w-full border px-4 py-3 mb-4 text-center"
+                        required
+                    />
+                )}
+
+                {/* RESET PASSWORD */}
+                {step === 'Reset Password' && (
+                    <>
+                        <input
+                            type="password"
+                            placeholder="New Password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            className="w-full border px-4 py-3 mb-4"
+                            required
+                        />
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="w-full border px-4 py-3 mb-4"
+                            required
+                        />
+                    </>
+                )}
+
+                {/* BUTTON */}
+                <button className="w-full bg-black text-white py-3 mt-2 rounded-md">
+                    {step === 'Login' && 'Sign in'}
+                    {step === 'Sign Up' && 'Create account'}
+                    {step === 'Forgot Password' && 'Send OTP'}
+                    {step === 'Verify OTP' && 'Verify OTP'}
+                    {step === 'Reset Password' && 'Change Password'}
+                </button>
+
+                {/* LINKS */}
+                <div className="text-center mt-4 text-sm space-y-2">
+
+                    {step === 'Login' && (
+                        <p
+                            onClick={() => setStep('Sign Up')}
+                            className="underline cursor-pointer"
+                        >
+                            Create account
+                        </p>
+                    )}
+
+                    {step === 'Sign Up' && (
+                        <p
+                            onClick={() => setStep('Login')}
+                            className="underline cursor-pointer"
+                        >
+                            Already have an account?
+                        </p>
+                    )}
+
+                    {(step === 'Forgot Password' || step === 'Verify OTP' || step === 'Reset Password') && (
+                        <p
+                            onClick={() => setStep('Login')}
+                            className="underline cursor-pointer"
+                        >
+                            Back to Login
+                        </p>
+                    )}
+                </div>
+
+            </form>
+        </div>
+    )
+}
+
+export default Login
