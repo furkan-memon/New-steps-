@@ -12,6 +12,7 @@ import MobileBottomNav from './components/Home/Navbar/MobileBottomNav'
 import { useState } from 'react';
 import Login from './components/Home/Navbar/Login';
 import Collection from './components/collection';
+import Checkout from './components/Checkout';
 const App = () => {
   
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/product-details' element={<ProductDetails />} />
         <Route path='/login' element={<Login />} />
         <Route path='/collection' element={<Collection />} />
+        <Route path='/Checkout' element={<Checkout/>} />
         
       </Routes>
       <Footer />

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { LoginForm, RegisterForm, ForgotPasswordForm, Menu } from "./panle"
-import CartPanel from "./CartPanle";
+import CartPanel from "./CartPanel";
 export default function PanelContent({ panel, setPanel }) {
   const contentRef = useRef();
 

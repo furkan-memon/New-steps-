@@ -29,18 +29,6 @@ export default function Footer() {
             step forward.
           </p>
 
-          <div className="flex gap-3 mb-6">
-            {[FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP].map(
-              (Icon, i) => (
-                <div
-                  key={i}
-                  className="w-9 h-9 flex items-center justify-center border border-gray-400 rounded-full hover:bg-white hover:text-[#0F5E5E] transition cursor-pointer"
-                >
-                  <Icon size={14} />
-                </div>
-              ),
-            )}
-          </div>
         </div>
 
         <FooterLinks
@@ -65,8 +53,6 @@ export default function Footer() {
             "Fashion",
             "Organic",
             "Beauty",
-            "Groceries",
-            "Fashion",
           ]}
         />
 
@@ -87,8 +73,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-black text-center pb-5 text-sm">
-        2026 Copyright By Themeforest Powered By Createux
+      <div className="bg-black pb-20 text-center lg:pb-5 text-sm">
+        © 2026 New Steps. All Rights Reserved.
       </div>
     </footer>
   );

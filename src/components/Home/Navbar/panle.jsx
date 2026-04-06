@@ -189,7 +189,7 @@ export const ForgotPasswordForm = ({ setPanel }) => (
 /* ================= MENU ================= */
 export const Menu = ({ setPanel }) => {
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-md p-4">
+    <div className="w-full max-w-md mx-auto  rounded-xl  py-4">
 
       <div className="flex flex-col gap-3 text-sm font-semibold text-gray-700">
 

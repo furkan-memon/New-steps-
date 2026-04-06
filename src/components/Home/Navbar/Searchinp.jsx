@@ -9,7 +9,7 @@ const Sarchinp = () => {
           type="text"
           id="search"
           required
-          className="peer w-[60vw] md:w-[40vw] lg:w-[20vw] rounded-full border border-gray-300 pl-11 pt-5 pb-2 text-sm outline-none
+          className="peer w-full md:w-[40vw] lg:w-[20vw] rounded-full border border-gray-300 pl-11 pt-5 pb-2 text-sm outline-none
                      focus:border-[#0F3558]"
         />
 

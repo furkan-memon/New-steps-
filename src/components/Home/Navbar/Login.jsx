@@ -71,7 +71,7 @@ const Login = () => {
 
   <form
     onSubmit={onSubmitHandler}
-    className="w-full max-w-md bg-white p-8 shadow-sm border"
+    className="w-full max-w-md bg-white p-8 "
   >
 
                 {/* Heading */}

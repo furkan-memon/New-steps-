@@ -1,34 +1,16 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import flipcart from '/images/flipcart.png'
-import meshoo from '/images/meshoo.png'
-import myntra from '/images/myntra.png'
-import firtcry from '/images/firstcry.png'
-import ajio from '/images/ajio.png'
+import firtcry from "/images/firstcry.png";
+import ajio from "/images/ajio.png";
 
 const PlatformTrust = () => {
   const platforms = [
-    {
-      name: "Flipkart",
-      desc: "Available on Flipkart with trusted delivery and easy returns",
-      logo: flipcart,
-    },
-    {
-        name: "Meesho",
-        desc: "Affordable deals and fast shipping on Meesho",
-        logo: meshoo,
-    },
-    {
-      name: "Myntra",
-      desc: "Stylish kids footwear available on Myntra",
-      logo: myntra,
-    },
     {
       name: "FirstCry",
       desc: "Trusted by parents on FirstCry platform",
       logo: firtcry,
     },
-     {
+    {
       name: "Ajio",
       desc: "Trusted by parents on Ajio platform",
       logo: ajio,
@@ -36,50 +18,60 @@ const PlatformTrust = () => {
   ];
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-14 bg-white">
       <div className="container mx-auto px-6">
 
-        <div className="text-center mb-12">
+        {/* Heading */}
+         <div className="flex flex-col md:flex-row justify-between items-center mb-12 border-b pb-6">
+
           <h2 className="text-3xl font-semibold text-gray-900">
-            Available On Trusted Platforms
+                       Available On Trusted Platforms
+
           </h2>
-          <p className="text-gray-500 text-sm mt-2">
+
+          <p className="text-gray-500 text-sm mt-3 md:mt-0">
             Shop New Steps from your favorite marketplaces
           </p>
+
         </div>
+      
 
-    <div className="flex flex-wrap justify-center gap-6">
-  {platforms.map((item, index) => (
-    
-    <a href="/"
-      key={index}
-      className="w-full sm:w-[48%] md:w-[30%] lg:w-[18%] border border-gray-200 rounded-xl p-6 hover:shadow-md transition"
-    >
-      <div className="flex items-center gap-4 mb-4">
-        <img
-          src={item.logo}
-          alt={item.name}
-          className="w-12 h-12 object-contain"
-        />
+        {/* Cards */}
+        <div className="flex  gap-8 flex-wrap">
 
-        <div>
-          <h4 className="text-sm font-semibold text-gray-900">
-            {item.name}
-          </h4>
-          <div className="flex items-center gap-1 text-green-500 text-xs">
-            <CheckCircle size={14} />
-            Verified Platform
-          </div>
+          {platforms.map((item, index) => (
+            <a
+              href="/"
+              key={index}
+              className="w-full sm:w-[320px] border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition duration-300"
+            >
+              <div className="flex items-center gap-5 mb-5">
+
+                <img
+                  src={item.logo}
+                  alt={item.name}
+                  className="w-14 h-14 object-contain"
+                />
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900">
+                    {item.name}
+                  </h4>
+
+                  <div className="flex items-center gap-1 text-green-500 text-sm mt-1">
+                    <CheckCircle size={16} />
+                    Verified Platform
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </a>
+          ))}
+
         </div>
-      </div>
-
-      <p className="text-gray-600 text-sm">
-        {item.desc}
-      </p>
-    </a>
-  ))}
-</div>
-
       </div>
     </section>
   );
