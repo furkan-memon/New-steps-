@@ -1,12 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import ProductCard from "./ProductCard";
-import product1 from "../../assets/images/image1.png";
-import product2 from "../../assets/images/product-image-2.png";
-import product3 from "../../assets/images/product-image-3.png";
-import product4 from "../../assets/images/product-image-4.png";
-import product5 from "../../assets/images/product-image-5.png";
+import React, { useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import ProductCard from "../ProductCard";
 import { Link } from "react-router-dom";
+import product1 from "../../assets/images/image1.png";
+import product2 from "../../assets/images/cs-2.png";
+import product3 from "../../assets/images/led-2.png";
+import product4 from "../../assets/images/led-2.png";
+import product5 from "../../assets/images/led-3.png";
+
+// Import GSAP
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const rawProducts = [
   {
     id: 1,
@@ -14,8 +19,6 @@ const rawProducts = [
     price: 28.56,
     oldPrice: 31.56,
     discount: "10% OFF",
-    sold: 4,
-    available: 200,
     img: product1,
     brand: "niky",
   },
@@ -25,11 +28,7 @@ const rawProducts = [
     price: 45.0,
     oldPrice: 55.0,
     discount: "18% OFF",
-    sold: 12,
-    available: 150,
     img: product2,
-    img2: product3,
-
     brand: "niky",
   },
   {
@@ -38,11 +37,7 @@ const rawProducts = [
     price: 32.2,
     oldPrice: 40.0,
     discount: "20% OFF",
-    sold: 85,
-    available: 200,
     img: product3,
-    img2: product4,
-
     brand: "niky",
   },
   {
@@ -51,10 +46,7 @@ const rawProducts = [
     price: 15.99,
     oldPrice: 19.99,
     discount: "25% OFF",
-    sold: 140,
-    available: 300,
     img: product4,
-    img2: product5,
     brand: "niky",
   },
   {
@@ -63,21 +55,43 @@ const rawProducts = [
     price: 22.1,
     oldPrice: 28.0,
     discount: "15% OFF",
-    sold: 60,
-    available: 100,
     img: product5,
     brand: "niky",
   },
 ];
 
-const products = [...rawProducts, ...rawProducts, ...rawProducts];
-
 const TopOfferSection = () => {
   const scrollRef = useRef(null);
+  const sectionRef = useRef(null); // Added this for GSAP trigger
+  // Triple products for infinite effect
+  const products = [...rawProducts, ...rawProducts, ...rawProducts]; // --- GSAP STAGGERED REVEAL ---
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const ctx = gsap.context(() => {
+      gsap.from(".product-card-gsap", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom-=80",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        y: 80,
+        scale: 0.9,
+        duration: 0.9,
+        ease: "expo.out",
+        stagger:0.4
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []); // --- INFINITE SCROLL LOGIC ---
+
   useEffect(() => {
     if (scrollRef.current) {
-      const cardWidth = 300;
-      scrollRef.current.scrollLeft = rawProducts.length * cardWidth;
+      const container = scrollRef.current;
+      const singleSetWidth = container.scrollWidth / 3;
+      container.scrollLeft = singleSetWidth;
     }
   }, []);
 
@@ -88,15 +102,15 @@ const TopOfferSection = () => {
     const singleSetWidth = scrollWidth / 3;
 
     if (scrollLeft >= singleSetWidth * 2) {
-      container.scrollLeft = scrollLeft - singleSetWidth;
-    } else if (scrollLeft <= singleSetWidth - container.clientWidth) {
-      container.scrollLeft = scrollLeft + singleSetWidth;
+      container.scrollLeft = singleSetWidth;
+    } else if (scrollLeft <= 0) {
+      container.scrollLeft = singleSetWidth;
     }
   };
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const moveAmount = scrollRef.current.clientWidth / 2;
+      const moveAmount = 350;
       const scrollTo =
         direction === "left"
           ? scrollRef.current.scrollLeft - moveAmount
@@ -106,58 +120,83 @@ const TopOfferSection = () => {
   };
 
   return (
-    <section className="py-12 container mx-auto  px-6 ">
-      <div className="flex  md:flex-row md:items-end  justify-between mb-8 gap-4">
-          <h2 className="md:text-3xl text-2xl font-medium  md:font-semibold text-black">
-            Fresh Select
-          </h2>
-          <Link to="./collection">
-       <button className="group bg-black text-white mt-2 px-3 py-2 md:px-5 md:py-2.5 rounded-xl flex items-center gap-2 text-[15px] md:text-sm font-bold transition-all shadow-md shadow-[#00796B]/20">
-           
-              View All
-              <span className="bg-white text-black rounded-full p-1 transition-transform duration-300 group-hover:rotate-45">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </span>
-            </button>
-          </Link>
-      </div>
+    <section
+      ref={sectionRef}
+      className="py-20 container mx-auto px-6 overflow-hidden"
+    >
+      <div className="flex flex-row items-end justify-between mb-12 border-b border-gray-100 pb-6">
+        <div className="text-left" onScroll={handleInfiniteScroll}>
+          <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-black block">
+            Fresh Drop
+          </span>
 
-      <div className="relative ">
+          <h2 className="text-3xl md:text-5xl font-light text-black tracking-tighter mt-2 uppercase">
+            <span className="font-black italic text-black">Selects</span>
+          </h2>
+        </div>
+
+        <Link to="/collection">
+          <button className="group flex items-center gap-3 text-[11px] font-black tracking-[0.2em] uppercase border-b-2 border-black pb-1 hover:text-gray-400 transition-all">
+            View All
+            <ArrowUpRight
+              size={16}
+              className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+            />
+          </button>
+        </Link>
+      </div>
+      <div className="relative group/carousel">
         <button
-          onClick={() => scroll("right")}
-          className="absolute -right-5 top-1/2  -translate-y-1/2 bg-white shadow-md rounded-full p-2 z-10"
+          onClick={() => scroll("left")}
+          className="absolute -left-4 top-[40%] -translate-y-1/2 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center z-30 shadow-2xl opacity-0 group-hover/carousel:opacity-100 transition-all hover:scale-110 active:scale-95 duration-500"
         >
-          <ChevronRight size={25} />
+          <ChevronLeft size={20} />
         </button>
         <div
           ref={scrollRef}
           onScroll={handleInfiniteScroll}
-          className="flex gap-5  overflow-x-auto py-2 scrollbar-hide snap-x snap-mandatory select-none"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="flex gap-8 overflow-x-auto py-4 scrollbar-hide snap-x snap-mandatory no-scrollbar select-none"
         >
-         <ProductCard products={products} showButton={false} />
+          {products.map(
+            (
+              item,
+              index, // Ensure ProductCard has the class 'product-card-gsap' inside its definition
+            ) => (
+              <ProductCard
+                key={`${item.id}-${index}`}
+                product={item}
+                index={index}
+              />
+            ),
+          )}
         </div>
         <button
-          onClick={() => scroll("left")}
-          className="absolute -left-5 top-1/2   -translate-y-1/2 bg-white  text-black shadow-md rounded-full p-2 z-10"
+          onClick={() => scroll("right")}
+          className="absolute -right-4 top-[40%] -translate-y-1/2 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center z-30 shadow-2xl opacity-0 group-hover/carousel:opacity-100 transition-all hover:scale-110 active:scale-95 duration-500"
         >
-          <ChevronLeft size={25} />
+          <ChevronRight size={20} />
         </button>
       </div>
-      <div className="re"></div>
-      <div className="flex justify-end mt-4"></div>
+      <div className="mt-8 flex justify-center">
+        <div className="h-[1.5px] w-48 bg-gray-50 relative overflow-hidden">
+          <div className="absolute top-0 h-full bg-black w-1/3 animate-shimmer"></div>
+        </div>
+      </div>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+ .scrollbar-hide::-webkit-scrollbar { display: none; }
+ .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+ @keyframes shimmer {
+ 0% { transform: translateX(-150%); }
+ 100% { transform: translateX(300%); }
+ }
+ .animate-shimmer {
+         animation: shimmer 3s infinite linear;
+
+`,
+        }}
+      />{" "}
     </section>
   );
 };

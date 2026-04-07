@@ -1,60 +1,47 @@
-import { Heart, Home, ShoppingCart, User } from "lucide-react";
+import { Heart, Home, ShoppingBag, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const MobileBottomNav = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-[1000] lg:hidden">
-
-      <div className="flex justify-around py-2">
-
-        {/* HOME */}
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `flex flex-col items-center text-xs ${
-              isActive ? "text-black" : "text-gray-500"
-            }`
-          }
-        >
-          <Home size={22} />
-          <span>Home</span>
+    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 z-[1000] lg:hidden pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.02)]">
+      <div className="flex justify-around items-center h-16">
+        
+        {/* Each link uses text-[9px] and font-black to match the brand */}
+        <NavLink to="/" className={({ isActive }) => `flex flex-col items-center gap-1 transition-all duration-300 ${isActive ? "text-black" : "text-gray-300"}`}>
+          {({ isActive }) => (
+            <>
+              <Home size={20} strokeWidth={isActive ? 2.5 : 1.5} />
+              <span className="text-[9px] font-black uppercase tracking-[0.2em]">Home</span>
+              {isActive && <div className="w-1 h-1 bg-black rounded-full absolute bottom-1.5"></div>}
+            </>
+          )}
         </NavLink>
 
-        {/* CART */}
-        <NavLink
-          to="/cart"
-          className={({ isActive }) =>
-            `flex flex-col items-center text-xs ${
-              isActive ? "text-black" : "text-gray-500"
-            }`
-          }
-        >
-          <ShoppingCart size={22} />
-          <span>Cart</span>
+        <NavLink to="/cart" className={({ isActive }) => `flex flex-col items-center gap-1 transition-all duration-300 ${isActive ? "text-black" : "text-gray-300"}`}>
+          {({ isActive }) => (
+            <>
+              <ShoppingBag size={20} strokeWidth={isActive ? 2.5 : 1.5} />
+              <span className="text-[9px] font-black uppercase tracking-[0.2em]">Bag</span>
+              {isActive && <div className="w-1 h-1 bg-black rounded-full absolute bottom-1.5"></div>}
+            </>
+          )}
         </NavLink>
 
-        {/* WISHLIST */}
-        <NavLink
-          to="/wishlist"
-          className={({ isActive }) =>
-            `flex flex-col items-center text-xs ${
-              isActive ? "text-black" : "text-gray-500"
-            }`
-          }
-        >
-          <Heart size={22} />
-          <span>Wishlist</span>
+        <NavLink to="/wishlist" className={({ isActive }) => `flex flex-col items-center gap-1 transition-all duration-300 ${isActive ? "text-black" : "text-gray-300"}`}>
+          {({ isActive }) => (
+            <>
+              <Heart size={20} strokeWidth={isActive ? 2.5 : 1.5} />
+              <span className="text-[9px] font-black uppercase tracking-[0.2em]">Saved</span>
+              {isActive && <div className="w-1 h-1 bg-black rounded-full absolute bottom-1.5"></div>}
+            </>
+          )}
         </NavLink>
 
-        {/* PROFILE */}
-        <button
-          onClick={() => navigate("/login")}
-          className="flex flex-col items-center text-xs text-gray-500"
-        >
-          <User size={22} />
-          <span>Profile</span>
+        <button onClick={() => navigate("/login")} className="flex flex-col items-center gap-1 text-gray-300">
+          <User size={20} strokeWidth={1.5} />
+          <span className="text-[9px] font-black uppercase tracking-[0.2em]">Profile</span>
         </button>
 
       </div>

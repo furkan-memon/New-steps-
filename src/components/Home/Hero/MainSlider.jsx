@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { MoveRight, MoveLeft, Plus } from "lucide-react";
 
 import hero1 from "../../../assets/images/h2.png";
 import hero2 from "../../../assets/images/hero2.jpeg";
@@ -7,43 +7,17 @@ import hero3 from "../../../assets/images/h1.png";
 import hero4 from "../../../assets/images/hero1.png";
 
 const MainSlider = () => {
-const slides = [
-  {
-    title: "Comfortable Steps for Growing Feet",
-    desc: "Fun ● Comfortable ● Durable",
-    img: hero3,
-    color: "#37B34A",   // green matches nature image 🌿
-    textc: "#FFFFFF"
-  },
-  {
-    title: "Active Comfort. All Day Play.",
-    desc: "The new Junior Sport Collection.",
-    img: hero2,
-    color: "#0F3558",   // dark blue for contrast on light shoe
-    textc: "#FFFFFF"
-  },
-  {
-    title: "Playful Steps Start Here",
-    desc: "Introducing the Baby Bear Collection.",
-    img: hero4,
-    color: "#2FA4D6",   // fresh sky blue works with warm bg
-    textc: "#FFFFFF"
-  },
-  {
-    title: "The Platform Perfection Collection.",
-    desc: "Look and feel your best every day.",
-    img: hero1,
-    color: "#0F3558",   // premium dark tone
-    textc: "#FFFFFF"
-  },
-];
+  const slides = [
+    { title: "URBAN", subtitle: "STREETWEAR", img: hero3, year: "2026" },
+    { title: "CORE", subtitle: "CLASSICS", img: hero2, year: "2026" },
+    { title: "TECH", subtitle: "FOOTWEAR", img: hero4, year: "2026" },
+    { title: "LUXE", subtitle: "PLATFORMS", img: hero1, year: "2026" },
+  ];
 
   const expandedSlides = [slides[slides.length - 1], ...slides, slides[0]];
-  
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const transitionDuration = 700;
-  const autoplayDelay = 5000; // 5 seconds
+  const transitionDuration = 600;
 
   const handleNext = useCallback(() => {
     if (currentIndex >= expandedSlides.length - 1) return;
@@ -57,108 +31,90 @@ const slides = [
     setCurrentIndex((prev) => prev - 1);
   };
 
-  // --- NEW: Autoplay Logic ---
   useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, autoplayDelay);
-
-    // Cleanup timer on unmount or when index changes to prevent overlaps
+    const timer = setInterval(handleNext, 5000);
     return () => clearInterval(timer);
   }, [handleNext]);
-  // ---------------------------
 
   useEffect(() => {
-    let timeout;
     if (currentIndex === expandedSlides.length - 1) {
-      timeout = setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(1);
-      }, transitionDuration);
+      setTimeout(() => { setIsTransitioning(false); setCurrentIndex(1); }, transitionDuration);
     }
-
     if (currentIndex === 0) {
-      timeout = setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(expandedSlides.length - 2);
-      }, transitionDuration);
+      setTimeout(() => { setIsTransitioning(false); setCurrentIndex(expandedSlides.length - 2); }, transitionDuration);
     }
-
-    return () => clearTimeout(timeout);
   }, [currentIndex, expandedSlides.length]);
 
   return (
-    <div className="relative  group    h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
+    <div className="relative h-[500px] md:h-[750px]  overflow-hidden font-sans">
       
+      {/* Background Slides */}
       <div
-        className={`flex h-full ${isTransitioning ? "transition-transform ease-in-out" : ""}`}
+        className={`flex h-full ${isTransitioning ? "transition-transform" : ""}`}
         style={{ 
             transform: `translateX(-${currentIndex * 100}%)`,
-            transitionDuration: isTransitioning ? `${transitionDuration}ms` : '0ms'
+            transitionDuration: isTransitioning ? `${transitionDuration}ms` : '0ms',
+            transitionTimingFunction: 'cubic-bezier(0.7, 0, 0.3, 1)'
         }}
       >
         {expandedSlides.map((slide, index) => (
-          <div key={index} className="min-w-full  relative flex items-center px-10 md:px-20">
-            <div className="z-10 relative   text-start   max-w-lg">
-              <h1 className="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                {slide.title}
-              </h1>
-              <p className="text-white/90 md:text-lg mb-8 max-w-sm">
-                {slide.desc}
-              </p>
-            <button  className={`group/button active:scale-95  text-black bg-white mt-2 px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm font-bold transition-all shadow-md shadow-[#00796B]/20`}>
-  Shop Now
-  <span className="bg-black text-white rounded-full p-1 transition-transform duration-300  group-hover/button:rotate-45">
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="7" y1="17" x2="17" y2="7"></line>
-      <polyline points="7 7 17 7 17 17"></polyline>
-    </svg>
-  </span>
-</button>
-            </div>
-
-            <div className="absolute inset-0 z-0">
-              <img 
-                src={slide.img} 
-                alt="Hero" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/30 z-10" />
+          <div key={index} className="min-w-full relative h-full">
+            <img 
+              src={slide.img} 
+              className="w-full h-full object-cover   transition-transform duration-[6s] group-hover:scale-110"
+              alt=""
+            />
+            
+            {/* Center Content: Big Bold Typography */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+                <span className="text-xs tracking-[0.5em] mb-4 opacity-60">EST. {slide.year}</span>
+                <h1 className="text-7xl md:text-[12rem] font-black leading-none tracking-tighter m-0">
+                    {slide.title}
+                </h1>
+                <h2 className="text-4xl md:text-7xl font-outline-2 text-transparent italic tracking-tight -mt-4 md:-mt-8 stroke-white border-white">
+                   {slide.subtitle}
+                </h2>
+                
+               <button className="mt-12 group/btn relative overflow-hidden px-14 py-5 transition-all duration-500 backdrop-blur-sm bg-black/10 border border-white/30 hover:bg-white">
+                    <span className="relative z-10 flex items-center gap-4 text-white group-hover/btn:text-black font-black tracking-[0.3em] text-[10px] uppercase">
+                        Shop Now <MoveRight size={18} />
+                    </span>
+                </button>
             </div>
           </div>
         ))}
       </div>
 
-      <button onClick={handlePrev} className="absolute text-white md:text-black left-6 top-1/2 -translate-y-1/2 z-30 md:bg-white/30 md:hover:bg-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
-        <ChevronLeft size={24} />
-      </button>
+      {/* Decorative Border Frame (The "Brutalist" Look) */}
+      <div className="absolute inset-0 border-[20px] border-black pointer-events-none z-20 hidden md:block" />
 
-      <button onClick={handleNext} className="absolute text-white md:text-black right-6 top-1/2 -translate-y-1/2 z-30 md:bg-white/30 md:hover:bg-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all">
-        <ChevronRight size={24} />
-      </button>
-
-      <div className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 z-30 md:flex gap-3">
-        {slides.map((_, i) => {
-          const isActive = (currentIndex === i + 1) || 
-                           (currentIndex === 0 && i === slides.length - 1) ||
-                           (currentIndex === expandedSlides.length - 1 && i === 0);
-          return (
-            <div 
-              key={i} 
-              className={`h-2 rounded-full transition-all duration-300 ${isActive ? "w-8 bg-white" : "w-2 bg-white/50"}`} 
-            />
-          );
-        })}
+      {/* Side Navigation (Text Based) */}
+      <div className="absolute bottom-10 left-10 z-30 flex items-center gap-10 text-white border-l border-white/30 pl-6">
+        <button onClick={handlePrev} className="hover:-translate-x-2 transition-transform opacity-60 hover:opacity-100">
+            <MoveLeft size={32} strokeWidth={1} />
+        </button>
+        <div className="text-xs font-mono tracking-tighter uppercase">
+            {currentIndex.toString().padStart(2, '0')} / {slides.length.toString().padStart(2, '0')}
+        </div>
+        <button onClick={handleNext} className="hover:translate-x-2 transition-transform opacity-60 hover:opacity-100">
+            <MoveRight size={32} strokeWidth={1} />
+        </button>
       </div>
+
+      {/* Bottom Corner Info */}
+      <div className="absolute bottom-10 right-10 z-30 hidden md:block">
+          <div className="text-white text-right">
+              <p className="text-[10px] tracking-widest uppercase opacity-40 mb-1">Status</p>
+              <p className="text-xs font-bold tracking-[0.2em]">ALL ITEMS IN STOCK</p>
+          </div>
+      </div>
+
+      {/* CSS for Outlined Text (Add this to your CSS file or a <style> tag) */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .font-outline-2 {
+          -webkit-text-stroke: 1px white;
+        }
+      `}} />
     </div>
   );
 };

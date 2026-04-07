@@ -1,65 +1,73 @@
 import React from "react";
 import bannerLeft from "../../assets/images/benn1.png"; 
 import bannerRight from "../../assets/images/benn2.png"; 
+import { ArrowUpRight } from "lucide-react";
 
 const DualBanners = () => {
   const data = [
     {
-      title: "Step Into Fun & Comfort",
-      desc: "Stylish, soft and durable shoes made for active kids. Perfect for every adventure.",
-      btnText: "View All",
-      bg: "#F4B183", 
+      title: "KIDS ESSENTIALS",
+      desc: "Performance meets play. Engineered for the next generation of explorers.",
+      btnText: "Discover Collection",
+      theme: "dark", // Black background overlay
       img: bannerLeft,
       flex: "flex-1"
     },
     {
-      title: "Premium Luxury Glow",
-      desc: "Upgrade your routine with our premium skincare and beauty essentials.",
-      btnText: "Shop Now",
-      bg: "#A7F3D0", 
+      title: "ELIXIR RADIANCE",
+      desc: "The science of glow. Professional skincare for a timeless complexion.",
+      btnText: "Shop the Ritual",
+      theme: "light", // White background overlay
       img: bannerRight,
-      flex: "flex-[1.5]"
+      flex: "flex-[1.2]"
     }
   ];
 
   return (
-    <section className="py-10 container mx-auto mx-auto ">
-      <div className="flex flex-col lg:flex-row gap-6">
+    <section className="py-20 container mx-auto px-6">
+      <div className="flex flex-col lg:flex-row gap-4">
         {data.map((item, index) => (
           <div 
             key={index} 
-            className={`relative h-[400px] md:h-[500px] rounded-[2.5rem] overflow-hidden group cursor-pointer ${item.flex}`}
+            className={`relative h-[500px] md:h-[650px] overflow-hidden group ${item.flex}`}
           >
+            {/* Background Image with subtle zoom */}
             <img 
               src={item.img} 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
               alt={item.title} 
             />
 
-            <div 
-              className="absolute bottom-6 left-6 right-6 p-6 md:p-8 rounded-[2rem] shadow-xl transition-all duration-300 group-hover:-translate-y-2"
-              style={{ backgroundColor: item.bg }}
-            >
-              {/* <span className="inline-block bg-[#FFEB3B] text-gray-800 text-[10px] font-black px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
-                Enjoy 20% savings
-              </span> */}
+            {/* Dark Overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
 
-              <h3 className="text-2xl md:text-3xl font-medium leading-tight mb-2">
-                {item.title}
+            {/* Floating Content Card */}
+            <div 
+              className={`absolute bottom-0 left-0 w-full p-8 md:p-12 flex flex-col items-start transition-all duration-500
+                ${item.theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}
+            >
+              <span className="text-[10px] tracking-[0.4em] font-bold mb-3 opacity-60 uppercase">
+                New Perspective
+              </span>
+
+              <h3 className="text-3xl md:text-4xl font-light tracking-tighter leading-none mb-4 uppercase">
+                {item.title.split(' ').map((word, i) => (
+                  <span key={i} className={i % 2 === 0 ? "font-black" : "font-extralight"}>
+                    {word}{" "}
+                  </span>
+                ))}
               </h3>
               
-              <p className="text-sm md:text-base text-gray-700 mb-6 font-medium max-w-[400px]">
+              <p className={`text-xs md:text-sm mb-8 max-w-[320px] leading-relaxed tracking-wide opacity-80`}>
                 {item.desc}
               </p>
 
-              <button className="bg-white text-black group/button px-5 py-2.5 cursor-pointer rounded-full flex items-center gap-2 text-sm font-bold  transition-all shadow-md shadow-[#00796B]/20">
-                {item.btnText} 
-                <span className="bg-black text-white rounded-full p-1 transition-transform group-hover/button:rotate-45">
-                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
+              <button className={`group/btn flex items-center gap-3 py-1 border-b-2 transition-all duration-300
+                ${item.theme === "dark" ? "border-white hover:text-gray-400" : "border-black hover:text-gray-500"}`}>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em]">
+                  {item.btnText}
                 </span>
+                <ArrowUpRight size={16} className="transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
               </button>
             </div>
           </div>
