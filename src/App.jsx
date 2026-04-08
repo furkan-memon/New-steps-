@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {Route,Routes} from 'react-router-dom'
 import Home from './pages/Home';
 import Navbar from "./components/Home/Navbar/Navbar"
-import About from './components/About/About';
+import About from './pages/About';
 import Footer from './components/Home/footer';
 import ContectUs from './pages/ContectUs';
 import Wishlist from './pages/Wishlist';
