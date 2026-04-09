@@ -10,10 +10,11 @@ import Wishlist from './pages/Wishlist';
 import ProductDetails from './components/ProductsDit';
 import MobileBottomNav from './components/Home/Navbar/MobileBottomNav'
 import { useState } from 'react';
-import Login from './components/Home/Navbar/Login';
+import Login from './pages/Login';
 import Collection from './pages/collection';
 import Checkout from './pages/Checkout';
 import Bag from './components/Bag';
+import Profile from './pages/Profile';
 
 const App = () => {
   
@@ -32,6 +33,7 @@ const App = () => {
         <Route path='/collection' element={<Collection />} />
         <Route path='/Checkout' element={<Checkout/>} />
         <Route path='/cart' element={<Bag />} />
+        <Route path='/profile' element={<Profile />} />
         
       </Routes>
       <Footer />

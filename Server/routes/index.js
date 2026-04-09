@@ -3,8 +3,6 @@ const router = express.Router();
 const isloggedin = require("../middleware/islogdin");
 const productModel = require('../model/Product')
 const userModel = require('../model/user');
-const user = require("../model/user");
-const { route } = require("./usersRouter");
 router.get("/", function (req, res) {
     let error = req.flash("error");
     res.render("index", { error ,loggedin:false});

@@ -10,6 +10,15 @@ import CartPanel from "./CartPanel.jsx";
 const Navbar = () => {
   const [panel, setPanel] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Logic to check if user is logged in via cookie
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+useEffect(() => {
+    // Check if user info exists in localStorage (set this during login)
+    const user = localStorage.getItem("user");
+    setIsLoggedIn(!!user);
+}, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,49 +87,48 @@ const Navbar = () => {
             </ul>
 
             {/* Right Icons */}
-            {/* Right Icons */}
-<div className="flex items-center gap-6 justify-end flex-1 lg:flex-none">
-  {/* Desktop Search: Visible only on Extra Large screens */}
-  <div className="hidden xl:block">
-    <Sarchinp />
-  </div>
+            <div className="flex items-center gap-6 justify-end flex-1 lg:flex-none">
+              <div className="hidden xl:block">
+                <Sarchinp />
+              </div>
 
-  <div className="flex items-center gap-4 md:gap-5">
-    {/* Hide User and Wishlist on mobile (sm breakpoint) to avoid crowding; 
-        these are now inside the SidePanel Menu */}
-    <Link to="/login" className="hidden lg:block hover:scale-110 transition-transform">
-      <User size={24} strokeWidth={1.2} />
-    </Link>
+              <div className="flex items-center gap-4 md:gap-5">
+                {/* DYNAMIC PROFILE LINK */}
+                <Link 
+                  to={isLoggedIn ? "/profile" : "/login"} 
+                  className="hidden lg:block hover:scale-110 transition-transform"
+                >
+                  <User size={24} strokeWidth={1.2} className={isLoggedIn ? "text-black" : "text-gray-400"} />
+                </Link>
 
-    <Link to="/wishlist" className="hidden lg:block hover:scale-110 transition-transform">
-      <Heart size={24} strokeWidth={1.2} />
-    </Link>
+                <Link to="/wishlist" className="hidden lg:block hover:scale-110 transition-transform">
+                  <Heart size={24} strokeWidth={1.2} />
+                </Link>
 
-    {/* Shopping Bag: Always visible */}
-    <div className="relative group">
-      <ShoppingBag
-        size={24}
-        strokeWidth={1.2}
-        className="cursor-pointer group-hover:scale-110 transition-transform"
-        onClick={() => setPanel("cart")}
-      />
-      <span className="absolute -top-1 -right-1 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-        0
-      </span>
-    </div>
+                {/* Shopping Bag: Always visible */}
+                <div className="relative group">
+                  <ShoppingBag
+                    size={24}
+                    strokeWidth={1.2}
+                    className="cursor-pointer group-hover:scale-110 transition-transform"
+                    onClick={() => setPanel("cart")}
+                  />
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                    0
+                  </span>
+                </div>
 
-    {/* Mobile Menu Icon: Visible only below lg breakpoint */}
-    <MenuIcon
-      size={28}
-      className="lg:hidden cursor-pointer hover:scale-110 transition-transform"
-      onClick={() => setPanel("menu")}
-    />
-  </div>
-</div>
+                {/* Mobile Menu Icon: Visible only below lg breakpoint */}
+                <MenuIcon
+                  size={28}
+                  className="lg:hidden cursor-pointer hover:scale-110 transition-transform"
+                  onClick={() => setPanel("menu")}
+                />
+              </div>
+            </div>
           </div>
 
           {/* --- RESPONSIVE SEARCH --- */}
-          {/* Visible on all screens EXCEPT Extra Large (xl) */}
           <div className="mt-6 xl:hidden pb-4">
             <Sarchinp />
           </div>
