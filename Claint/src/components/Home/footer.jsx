@@ -58,7 +58,6 @@ export default function Footer() {
           ]}
         />
 
-        {/* Contact Section */}
         <div>
           <h3 className="text-[11px] font-black tracking-[0.3em] uppercase mb-6 border-b border-zinc-800 pb-3">
             REACH US
@@ -84,7 +83,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-zinc-900 py-8 text-center text-[10px] tracking-[0.2em] uppercase text-zinc-500">
         © 2026 New Steps. Crafted for the Next Generation.
       </div>

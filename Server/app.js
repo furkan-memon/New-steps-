@@ -7,10 +7,9 @@ const cookieParser = require('cookie-parser');
 // Database Connection
 require('./config/mongoose-conection');
 
-// PROPER CORS: Essential for React + Cookies
 app.use(cors({
-    origin: 'http://localhost:5173', // Change this to your React port if different
-    credentials: true,               // Allows the "token" cookie to pass through
+    origin: 'http://localhost:5173', 
+    credentials: true,               
 }));
 
 app.use(express.json());

@@ -8,7 +8,6 @@ import product4 from "../../assets/images/s-4.png";
 import product5 from "../../assets/images/s-3.png";
 import { Link } from "react-router-dom";
 
-// 1. Import GSAP
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -24,10 +23,8 @@ const products = [...rawProducts, ...rawProducts, ...rawProducts];
 
 const TopOfferSection = () => {
   const scrollRef = useRef(null);
-  // 2. Add Container Ref
   const containerRef = useRef(null);
 
-  // 3. Register Plugin and Add Animation
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
@@ -43,7 +40,7 @@ const TopOfferSection = () => {
         duration: 1.2,
         ease: "power4.out",
         stagger: {
-          amount: 1, // Distributes the animation time across all visible cards
+          amount: 1, 
           from: "start"
         }
       });
@@ -85,9 +82,7 @@ const TopOfferSection = () => {
   };
 
   return (
-    // 4. Wrap in containerRef
     <section ref={containerRef} className="py-20 container mx-auto px-6 overflow-hidden">
-      {/* Header Section */}
       <div className="flex flex-row items-end justify-between mb-12 border-b border-gray-100 pb-6">
         <div>
           <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold text-left block">Top Performance</span>
@@ -104,7 +99,6 @@ const TopOfferSection = () => {
         </Link>
       </div>
 
-      {/* Carousel Section */}
       <div className="relative group/carousel">
         <button
           onClick={() => scroll("left")}
@@ -119,7 +113,6 @@ const TopOfferSection = () => {
           className="flex gap-8 overflow-x-auto py-4 scrollbar-hide snap-x snap-mandatory select-none no-scrollbar"
         >
           {products.map((item, index) => (
-            // 5. Ensure this card has the class 'product-card-gsap' inside its definition
             <ProductCard key={`${item.id}-${index}`} product={item} index={index} />
           ))}
         </div>
@@ -132,7 +125,6 @@ const TopOfferSection = () => {
         </button>
       </div>
 
-      {/* Aesthetic Loading Indicator */}
       <div className="mt-8 flex justify-center">
         <div className="h-[1px] w-48 bg-gray-100 relative overflow-hidden">
           <div className="absolute top-0 h-full bg-black w-1/4 animate-[shimmer_2s_infinite_linear]"></div>

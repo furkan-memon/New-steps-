@@ -9,7 +9,7 @@ const DualBanners = () => {
       title: "KIDS ESSENTIALS",
       desc: "Performance meets play. Engineered for the next generation of explorers.",
       btnText: "Discover Collection",
-      theme: "dark", // Black background overlay
+      theme: "dark", 
       img: bannerLeft,
       flex: "flex-1"
     },
@@ -17,7 +17,7 @@ const DualBanners = () => {
       title: "ELIXIR RADIANCE",
       desc: "The science of glow. Professional skincare for a timeless complexion.",
       btnText: "Shop the Ritual",
-      theme: "light", // White background overlay
+      theme: "light", 
       img: bannerRight,
       flex: "flex-[1.2]"
     }
@@ -31,17 +31,14 @@ const DualBanners = () => {
             key={index} 
             className={`relative h-[500px] md:h-[650px] overflow-hidden group ${item.flex}`}
           >
-            {/* Background Image with subtle zoom */}
             <img 
               src={item.img} 
               className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
               alt={item.title} 
             />
 
-            {/* Dark Overlay for better text readability */}
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
 
-            {/* Floating Content Card */}
             <div 
               className={`absolute bottom-0 left-0 w-full p-8 md:p-12 flex flex-col items-start transition-all duration-500
                 ${item.theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}

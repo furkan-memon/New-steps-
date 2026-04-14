@@ -2,7 +2,6 @@ import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 
-// ... (Your products array remains the same)
 const products = [
   {
     id: 1,
@@ -112,7 +111,6 @@ export default function Collection() {
     <section className="py-12 bg-white min-h-screen">
       <div className="container  mx-auto px-6">
         
-        {/* --- Page Header --- */}
         <div className="mb-12 border-b border-gray-100 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold">New Steps</span>
@@ -127,7 +125,6 @@ export default function Collection() {
 
         <div className="flex flex-col lg:flex-row gap-12">
 
-          {/* --- LEFT SIDEBAR: MINIMALIST FILTERS --- */}
           <aside className="w-full lg:w-[240px] shrink-0">
             <div className="sticky top-28 space-y-8">
               
@@ -140,7 +137,6 @@ export default function Collection() {
                 </button>
               </div>
 
-              {/* Availability Filter */}
               <div className="space-y-4">
                 <h4 className="text-[11px] font-bold tracking-widest uppercase text-black">Availability</h4>
                 <div className="space-y-3">
@@ -156,7 +152,6 @@ export default function Collection() {
                 </div>
               </div>
 
-              {/* Expandable Filter Sections */}
               {["Price", "Gender", "Color", "Size", "Brand"].map((item, i) => (
                 <div key={i} className="border-t border-gray-100 py-4 group cursor-pointer">
                   <div className="flex justify-between items-center text-[11px] font-bold tracking-widest uppercase group-hover:text-gray-500 transition-colors">
@@ -168,10 +163,7 @@ export default function Collection() {
             </div>
           </aside>
 
-          {/* --- RIGHT SIDE: PRODUCT GRID --- */}
           <main className="flex-1">
-            
-            {/* Sorting Bar */}
             <div className="flex justify-end mb-8">
               <div className="relative flex items-center gap-3 border-b border-black pb-1">
                 <span className="text-[10px] font-bold tracking-widest uppercase">Sort By:</span>
@@ -185,7 +177,6 @@ export default function Collection() {
               </div>
             </div>
 
-            {/* PRODUCT GRID */}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-12">
               {products.map((item, index) => (
                 <ProductCard 
@@ -196,7 +187,6 @@ export default function Collection() {
               ))}
             </div>
 
-            {/* Pagination / Load More */}
             <div className="mt-20 flex flex-col items-center border-t border-gray-100 pt-12">
                <p className="text-[10px] tracking-[0.2em] text-gray-400 uppercase mb-4">You've viewed 10 of 23 products</p>
                <div className="w-48 h-[2px] bg-gray-100 mb-8 relative">

@@ -8,7 +8,6 @@ import product3 from "../../assets/images/led-2.png";
 import product4 from "../../assets/images/led-2.png";
 import product5 from "../../assets/images/led-3.png";
 
-// Import GSAP
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -62,10 +61,8 @@ const rawProducts = [
 
 const TopOfferSection = () => {
   const scrollRef = useRef(null);
-  const sectionRef = useRef(null); // Added this for GSAP trigger
-  // Triple products for infinite effect
-  const products = [...rawProducts, ...rawProducts, ...rawProducts]; // --- GSAP STAGGERED REVEAL ---
-
+  const sectionRef = useRef(null);
+  const products = [...rawProducts, ...rawProducts, ...rawProducts]; 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
@@ -85,7 +82,7 @@ const TopOfferSection = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []); // --- INFINITE SCROLL LOGIC ---
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {

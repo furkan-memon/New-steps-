@@ -11,7 +11,6 @@ import prod7 from "../../assets/images/led-7.png";
 import prod8 from "../../assets/images/leds-1.png";
 import prod9 from "../../assets/images/leds-2.png";
 import prod10 from "../../assets/images/led-8.png";
-// ... (Your imports for images and rawProducts remain the same)
 
 const categories = [
   "All Products",
@@ -144,7 +143,7 @@ const CategoriesProduct = () => {
   const scroll = (dir) => {
     const container = scrollRef.current;
     if (!container) return;
-    const move = 340; // Card width + gap
+    const move = 340; 
     container.scrollBy({
       left: dir === "left" ? -move : move,
       behavior: "smooth",
@@ -153,7 +152,6 @@ const CategoriesProduct = () => {
 
   return (
     <section className="py-24 container mx-auto px-6 overflow-hidden">
-      {/* --- Section Header --- */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-gray-100 pb-8">
         <div className="text-left">
           <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold">Discover</span>
@@ -162,7 +160,6 @@ const CategoriesProduct = () => {
           </h2>
         </div>
 
-        {/* --- Minimalist Tab Navigation --- */}
         <nav className="flex overflow-x-auto no-scrollbar gap-8">
           {categories.map((cat) => (
             <button
@@ -184,9 +181,7 @@ const CategoriesProduct = () => {
         </nav>
       </div>
 
-      {/* --- Product Carousel --- */}
       <div className="relative group/carousel">
-        {/* Navigation Arrows */}
         <button
           onClick={() => scroll("left")}
           className="absolute -left-4 top-[40%] -translate-y-1/2 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center z-20 shadow-2xl opacity-0 group-hover/carousel:opacity-100 transition-all hover:scale-110 active:scale-95"
@@ -200,7 +195,6 @@ const CategoriesProduct = () => {
         >
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              // Passing individual product to avoid the 'img of undefined' crash
               <ProductCard key={product.id} product={product} />
             ))
           ) : (
@@ -220,7 +214,6 @@ const CategoriesProduct = () => {
         </button>
       </div>
 
-      {/* --- Footer Link --- */}
       <div className="mt-4 flex justify-start">
          <button className="flex items-center gap-2 text-[10px] font-black tracking-[0.3em] uppercase group">
             Explore All Products 

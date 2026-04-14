@@ -12,7 +12,6 @@ export default function CartPanel({ setPanel }) {
 
   return (
     <div className="flex flex-col h-full bg-white pt-6">
-      {/* --- ITEMS LIST --- */}
       <div className="flex-1 overflow-y-auto no-scrollbar space-y-8">
         {cart.map((item) => (
           <div key={item.id} className="flex gap-6 items-start border-b border-gray-50 pb-8 last:border-0">
@@ -42,7 +41,6 @@ export default function CartPanel({ setPanel }) {
         ))}
       </div>
 
-      {/* --- FOOTER ACTIONS --- */}
       <div className="pt-8 border-t border-gray-100 bg-white">
         <div className="flex justify-between items-center mb-8 px-1">
           <div className="flex flex-col text-left">
@@ -52,9 +50,7 @@ export default function CartPanel({ setPanel }) {
           <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest italic">INR</span>
         </div>
 
-        {/* --- BUTTON GRID (Left & Right) --- */}
         <div className="grid grid-cols-2 gap-3">
-          {/* VIEW ALL BUTTON (Left) */}
           <Link 
             to="/cart" 
             onClick={() => setPanel(null)}
@@ -63,7 +59,6 @@ export default function CartPanel({ setPanel }) {
             View Bag
           </Link>
 
-          {/* CHECKOUT BUTTON (Right) */}
           <Link 
             to='/Checkout'  
             onClick={() => setPanel(null)} 

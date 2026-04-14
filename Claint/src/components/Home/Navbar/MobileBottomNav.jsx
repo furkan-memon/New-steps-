@@ -8,7 +8,6 @@ const MobileBottomNav = () => {
     <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 z-[1000] lg:hidden pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.02)]">
       <div className="flex justify-around items-center h-16">
         
-        {/* Each link uses text-[9px] and font-black to match the brand */}
         <NavLink to="/" className={({ isActive }) => `flex flex-col items-center gap-1 transition-all duration-300 ${isActive ? "text-black" : "text-gray-300"}`}>
           {({ isActive }) => (
             <>

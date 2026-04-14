@@ -35,7 +35,6 @@ useEffect(() => {
         <div className={`w-full z-[1004] bg-white px-6 transition-all duration-500 container  mx-auto `}>
           <div className="flex relative items-center justify-between gap-8">
 
-            {/* --- BIG LOGO SECTION --- */}
             <div className="flex-none transition-all duration-500">
               <Link
                 to="/"
@@ -51,7 +50,6 @@ useEffect(() => {
               </Link>
             </div>
 
-            {/* Sticky Logo */}
             <div
               className={`fixed left-8 top-4 z-[1005] transition-all duration-500 cursor-pointer
               ${isScrolled ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10 pointer-events-none"}`}
@@ -66,7 +64,6 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Navigation Menu */}
             <ul className="hidden lg:flex gap-10 text-[13px] tracking-[0.25em] font-bold">
               {["/", "/collection", "/about", "/contact"].map((path, i) => {
                 const names = ["HOME", "COLLECTION", "ABOUT", "CONTACT"];
@@ -93,7 +90,6 @@ useEffect(() => {
               </div>
 
               <div className="flex items-center gap-4 md:gap-5">
-                {/* DYNAMIC PROFILE LINK */}
                 <Link 
                   to={isLoggedIn ? "/profile" : "/login"} 
                   className="hidden lg:block hover:scale-110 transition-transform"
@@ -105,7 +101,6 @@ useEffect(() => {
                   <Heart size={24} strokeWidth={1.2} />
                 </Link>
 
-                {/* Shopping Bag: Always visible */}
                 <div className="relative group">
                   <ShoppingBag
                     size={24}
@@ -118,7 +113,6 @@ useEffect(() => {
                   </span>
                 </div>
 
-                {/* Mobile Menu Icon: Visible only below lg breakpoint */}
                 <MenuIcon
                   size={28}
                   className="lg:hidden cursor-pointer hover:scale-110 transition-transform"
@@ -128,7 +122,6 @@ useEffect(() => {
             </div>
           </div>
 
-          {/* --- RESPONSIVE SEARCH --- */}
           <div className="mt-6 xl:hidden pb-4">
             <Sarchinp />
           </div>

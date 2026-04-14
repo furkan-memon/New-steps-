@@ -15,7 +15,6 @@ const rawProducts = [
   { id: 5, name: "Propolis B5 Cream", price: 22.1, oldPrice: 28, img: product5 },
 ];
 
-// repeat for infinite scroll
 const products = [...rawProducts, ...rawProducts, ...rawProducts];
 
 export default function ProductDetails() {
@@ -68,13 +67,10 @@ export default function ProductDetails() {
   return (
     <section className="bg-white container mx-auto py-10">
 
-      {/* MAIN SECTION */}
       <div className=" mx-auto px-4 flex flex-col lg:flex-row gap-10">
 
-        {/* LEFT IMAGES */}
         <div className="flex gap-4 w-full lg:w-1/2">
 
-          {/* Thumbnails */}
           <div className="flex flex-col gap-3">
             {images.map((img, i) => (
               <img
@@ -88,7 +84,6 @@ export default function ProductDetails() {
             ))}
           </div>
 
-          {/* Main Image */}
           <div className="flex-1">
             <img
               src={mainImg}
@@ -97,7 +92,6 @@ export default function ProductDetails() {
           </div>
         </div>
 
-        {/* RIGHT DETAILS */}
         <div className="w-full lg:w-1/2">
           <h2 className="text-2xl font-semibold">
             Kids Stylish Sneakers
@@ -113,7 +107,6 @@ export default function ProductDetails() {
             Comfortable and stylish shoes for everyday wear.
           </p>
 
-          {/* Size */}
           <div className="mt-5">
             <p className="mb-2 font-medium">Size</p>
             <div className="flex gap-2">
@@ -128,14 +121,12 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* Quantity */}
           <div className="mt-5 flex gap-3 items-center">
             <button onClick={() => setQty(qty > 1 ? qty - 1 : 1)} className="px-3 border">-</button>
             <span>{qty}</span>
             <button onClick={() => setQty(qty + 1)} className="px-3 border">+</button>
           </div>
 
-          {/* Buttons */}
           <div className="mt-6 flex gap-4">
             <button className="bg-white text-black border active:scale-98 px-6 py-3 rounded-lg w-full">
               Add to Cart
@@ -147,7 +138,6 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      {/* RELATED PRODUCTS */}
       <div className=" px-4 mt-14">
 
         <h3 className="text-lg font-semibold mb-6">
@@ -156,7 +146,6 @@ export default function ProductDetails() {
 
         <div className="relative">
 
-          {/* RIGHT */}
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-2 z-10"
@@ -164,7 +153,6 @@ export default function ProductDetails() {
             <ChevronRight size={20} />
           </button>
 
-          {/* SCROLL */}
           <div
             ref={scrollRef}
             onScroll={handleInfiniteScroll}
@@ -173,7 +161,6 @@ export default function ProductDetails() {
             <ProductCard products={products} showButton={false} />
           </div>
 
-          {/* LEFT */}
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-2 z-10"

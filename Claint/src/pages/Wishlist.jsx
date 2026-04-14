@@ -42,7 +42,6 @@ export default function Wishlist() {
   return (
     <div className="container  mx-auto p-8 bg-white min-h-screen">
       
-      {/* --- Page Header --- */}
       <div className="mb-12 border-b border-gray-100 pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold">Your Selection</span>
@@ -62,10 +61,8 @@ export default function Wishlist() {
         </div>
       </div>
 
-      {/* --- Wishlist Grid/Table --- */}
       <div className="border-t border-gray-100">
         
-        {/* Header (Hidden on Mobile) */}
         <div className="hidden lg:grid grid-cols-[60px_3fr_1fr_1fr_1fr_1fr_50px] border-b border-gray-100 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">
           <div className="flex justify-center italic">Pick</div>
           <div className="pl-6">Product Details</div>
@@ -76,12 +73,10 @@ export default function Wishlist() {
           <div className="text-right">Action</div>
         </div>
 
-        {/* Product Items */}
         <div className="divide-y divide-gray-50">
           {products.map((p) => (
             <div key={p.id} className="grid grid-cols-1 lg:grid-cols-[60px_3fr_1fr_1fr_1fr_1fr_50px] items-center py-8 group transition-all">
               
-              {/* Checkbox Custom Style */}
               <div className="flex justify-center mb-4 lg:mb-0">
                 <div className="relative flex items-center justify-center">
                   <input
@@ -94,7 +89,6 @@ export default function Wishlist() {
                 </div>
               </div>
 
-              {/* Product Info */}
               <div className="flex items-center gap-6 pl-0 lg:pl-6 mb-6 lg:mb-0">
                 <div className="w-24 h-24 bg-gray-50 overflow-hidden border border-gray-100 transition-transform group-hover:scale-105">
                   <img src={p.img} alt={p.name} className="w-full h-full object-contain p-2" />
@@ -161,7 +155,6 @@ export default function Wishlist() {
         </div>
       </div>
 
-      {/* --- Footer Note --- */}
       <div className="mt-12 text-center">
         <Link to="/collection" className="text-[10px] font-black tracking-[0.3em] uppercase border-b border-black pb-1 hover:text-gray-400 hover:border-gray-200 transition-all">
           Continue Browsing

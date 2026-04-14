@@ -10,7 +10,6 @@ export default function AboutSection() {
     <section className="bg-white py-16 md:py-24">
       <div className="container mx-auto px-6">
         
-        {/* --- Minimalist Breadcrumb --- */}
         <div className="flex items-center text-[10px] tracking-[0.3em] uppercase font-bold text-gray-400 mb-12">
           <Link to="/" className="hover:text-black transition-colors">
             Home
@@ -19,10 +18,8 @@ export default function AboutSection() {
           <span className="text-black">Our Story</span>
         </div>
 
-        {/* MAIN FLEX */}
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           
-          {/* LEFT: CONTENT */}
           <div className="flex-1">
             <header className="mb-12">
               <span className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-black block mb-4">
@@ -35,7 +32,6 @@ export default function AboutSection() {
             </header>
 
             <div className="grid md:grid-cols-2 gap-12 border-t border-gray-100 pt-12">
-              {/* Mission */}
               <div>
                 <h4 className="text-[12px] font-black tracking-[0.2em] uppercase text-black mb-4">
                   Our Mission
@@ -48,7 +44,6 @@ export default function AboutSection() {
                 </p>
               </div>
 
-              {/* Vision */}
               <div>
                 <h4 className="text-[12px] font-black tracking-[0.2em] uppercase text-black mb-4">
                   Our Vision
@@ -61,7 +56,6 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Stats: Minimalist Designer Style */}
             <div className="mt-16 border border-black p-10 flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="text-center">
                 <h3 className="text-4xl font-black text-black">5+</h3>
@@ -80,7 +74,6 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* RIGHT: IMAGE COMPOSITION */}
           <div className="w-full lg:w-[40%] flex flex-col gap-6">
             <div className="relative group overflow-hidden">
               <img

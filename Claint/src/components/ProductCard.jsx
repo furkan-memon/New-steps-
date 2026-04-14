@@ -9,11 +9,9 @@ const ProductCard = ({ product }) => {
 
   return (
     <div 
-      // Removed opacity-0 and the useEffect internal animation
       className="product-card-gsap min-w-[280px] md:min-w-[320px] snap-start mb-10 will-change-transform"
     >
       <Link to="/product-details" className="group block">
-        {/* --- IMAGE CONTAINER --- */}
         <div className="relative aspect-[4/5] bg-[#f9f9f9] overflow-hidden border border-gray-50">
           <img
             src={product.img}
@@ -41,7 +39,6 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
 
-        {/* --- DETAILS --- */}
         <div className="mt-6 space-y-1 text-left px-1">
           <h3 className="text-[9px] font-black tracking-[0.4em] text-gray-300 uppercase">
             {product.brand}

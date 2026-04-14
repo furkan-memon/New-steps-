@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { MoveRight, MoveLeft, Plus } from "lucide-react";
+import { MoveRight, MoveLeft } from "lucide-react";
 
 import hero1 from "../../../assets/images/h2.png";
 import hero2 from "../../../assets/images/hero2.jpeg";
@@ -17,7 +17,7 @@ const MainSlider = () => {
   const expandedSlides = [slides[slides.length - 1], ...slides, slides[0]];
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const transitionDuration = 600;
+  const transitionDuration = 800; // Slightly slower for a more "luxurious" feel
 
   const handleNext = useCallback(() => {
     if (currentIndex >= expandedSlides.length - 1) return;
@@ -32,87 +32,110 @@ const MainSlider = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(handleNext, 5000);
+    const timer = setInterval(handleNext, 6000);
     return () => clearInterval(timer);
   }, [handleNext]);
 
   useEffect(() => {
     if (currentIndex === expandedSlides.length - 1) {
-      setTimeout(() => { setIsTransitioning(false); setCurrentIndex(1); }, transitionDuration);
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(1);
+      }, transitionDuration);
     }
     if (currentIndex === 0) {
-      setTimeout(() => { setIsTransitioning(false); setCurrentIndex(expandedSlides.length - 2); }, transitionDuration);
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(expandedSlides.length - 2);
+      }, transitionDuration);
     }
   }, [currentIndex, expandedSlides.length]);
 
   return (
-    <div className="relative h-[500px] md:h-[750px]  overflow-hidden font-sans">
+    <div className="relative h-[500px] md:h-[85vh] overflow-hidden font-sans bg-black">
       
-      {/* Background Slides */}
+      {/* THE SLIDER TRACK */}
       <div
         className={`flex h-full ${isTransitioning ? "transition-transform" : ""}`}
-        style={{ 
-            transform: `translateX(-${currentIndex * 100}%)`,
-            transitionDuration: isTransitioning ? `${transitionDuration}ms` : '0ms',
-            transitionTimingFunction: 'cubic-bezier(0.7, 0, 0.3, 1)'
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+          transitionDuration: isTransitioning ? `${transitionDuration}ms` : "0ms",
+          transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)", // Premium Boutique Easing
         }}
       >
         {expandedSlides.map((slide, index) => (
-          <div key={index} className="min-w-full relative h-full">
-            <img 
-              src={slide.img} 
-              className="w-full h-full object-cover   transition-transform duration-[6s] group-hover:scale-110"
-              alt=""
-            />
+          <div key={index} className="min-w-full relative h-full group">
             
-            {/* Center Content: Big Bold Typography */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-                <span className="text-xs tracking-[0.5em] mb-4 opacity-60">EST. {slide.year}</span>
-                <h1 className="text-7xl md:text-[12rem] font-black leading-none tracking-tighter m-0">
-                    {slide.title}
-                </h1>
-                <h2 className="text-4xl md:text-7xl font-outline-2 text-transparent italic tracking-tight -mt-4 md:-mt-8 stroke-white border-white">
-                   {slide.subtitle}
-                </h2>
-                
-               <button className="mt-12 group/btn relative overflow-hidden px-14 py-5 transition-all duration-500 backdrop-blur-sm bg-black/10 border border-white/30 hover:bg-white">
-                    <span className="relative z-10 flex items-center gap-4 text-white group-hover/btn:text-black font-black tracking-[0.3em] text-[10px] uppercase">
-                        Shop Now <MoveRight size={18} />
-                    </span>
-                </button>
+            {/* IMAGE COMPONENT */}
+            <img
+              src={slide.img}
+              className="w-full h-full object-cover object-center scale-100 transition-transform duration-[10s] group-hover:scale-105 will-change-transform"
+              alt={slide.title}
+              loading="eager"
+            />
+
+            {/* OVERLAY: This prevents the 'blur' from looking cheap */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+            <div className="absolute inset-0 bg-black/10 mix-blend-overlay" />
+
+            {/* TEXT CONTENT */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10 px-4">
+              <span className="text-[10px] md:text-xs tracking-[0.8em] mb-4 opacity-70 font-bold uppercase">
+                Collection {slide.year}
+              </span>
+              <h1 className="text-6xl md:text-[14rem] font-black leading-none tracking-tighter m-0 select-none animate-reveal">
+                {slide.title}
+              </h1>
+              <h2 className="text-3xl md:text-8xl font-outline-2 text-transparent italic tracking-tight -mt-3 md:-mt-10 stroke-white opacity-90 select-none">
+                {slide.subtitle}
+              </h2>
+
+              <button className="mt-12 group/btn relative overflow-hidden px-12 py-5 transition-all duration-500 bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white">
+                <span className="relative z-10 flex items-center gap-4 text-white group-hover/btn:text-black font-black tracking-[0.4em] text-[10px] uppercase">
+                  Explore Now <MoveRight size={16} />
+                </span>
+              </button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Decorative Border Frame (The "Brutalist" Look) */}
-      <div className="absolute inset-0 border-[20px] border-black pointer-events-none z-20 hidden md:block" />
+      {/* LUXE BORDER FRAME */}
+      <div className="absolute inset-0 border-[15px] md:border-[30px] border-black pointer-events-none z-20" />
 
-      {/* Side Navigation (Text Based) */}
-      <div className="absolute bottom-10 left-10 z-30 flex items-center gap-10 text-white border-l border-white/30 pl-6">
-        <button onClick={handlePrev} className="hover:-translate-x-2 transition-transform opacity-60 hover:opacity-100">
-            <MoveLeft size={32} strokeWidth={1} />
+      {/* CONTROLS */}
+      <div className="absolute bottom-12 left-12 z-30 flex items-center gap-8 text-white">
+        <button onClick={handlePrev} className="hover:-translate-x-2 transition-transform opacity-50 hover:opacity-100">
+          <MoveLeft size={28} strokeWidth={1.5} />
         </button>
-        <div className="text-xs font-mono tracking-tighter uppercase">
-            {currentIndex.toString().padStart(2, '0')} / {slides.length.toString().padStart(2, '0')}
+        <div className="flex items-baseline gap-1 font-black text-xs tracking-widest italic">
+          <span className="text-xl">{(currentIndex === 0 ? slides.length : currentIndex > slides.length ? 1 : currentIndex).toString().padStart(2, "0")}</span>
+          <span className="opacity-30 text-[10px]">/</span>
+          <span className="opacity-30 text-[10px]">{slides.length.toString().padStart(2, "0")}</span>
         </div>
-        <button onClick={handleNext} className="hover:translate-x-2 transition-transform opacity-60 hover:opacity-100">
-            <MoveRight size={32} strokeWidth={1} />
+        <button onClick={handleNext} className="hover:translate-x-2 transition-transform opacity-50 hover:opacity-100">
+          <MoveRight size={28} strokeWidth={1.5} />
         </button>
       </div>
 
-      {/* Bottom Corner Info */}
-      <div className="absolute bottom-10 right-10 z-30 hidden md:block">
-          <div className="text-white text-right">
-              <p className="text-[10px] tracking-widest uppercase opacity-40 mb-1">Status</p>
-              <p className="text-xs font-bold tracking-[0.2em]">ALL ITEMS IN STOCK</p>
-          </div>
+      {/* STATUS INDICATOR */}
+      <div className="absolute bottom-12 right-12 z-30 hidden md:block border-r border-white/20 pr-6">
+        <div className="text-white text-right">
+          <p className="text-[9px] tracking-[0.4em] uppercase opacity-40 mb-1">Boutique Status</p>
+          <p className="text-[10px] font-black tracking-[0.2em] italic">READY TO SHIP</p>
+        </div>
       </div>
 
-      {/* CSS for Outlined Text (Add this to your CSS file or a <style> tag) */}
       <style dangerouslySetInnerHTML={{ __html: `
         .font-outline-2 {
-          -webkit-text-stroke: 1px white;
+          -webkit-text-stroke: 1.5px white;
+        }
+        @keyframes reveal {
+          from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+          to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .animate-reveal {
+          animation: reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
       `}} />
     </div>

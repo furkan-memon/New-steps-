@@ -16,11 +16,10 @@ const Profile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                // You'll need to create this endpoint in your Express backend
                 const response = await api.get('/users/profile');
                 setUser(response.data.user);
             } catch (err) {
-                navigate('/login'); // Redirect if not logged in
+                navigate('/login'); 
             } finally {
                 setLoading(false);
             }
@@ -55,7 +54,6 @@ const Profile = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {/* Left Column: Info */}
                     <div className="space-y-12">
                         <div>
                             <h3 className="text-[11px] font-black uppercase tracking-[0.2em] mb-6 border-b border-black pb-2 w-fit">Profile Details</h3>
@@ -72,7 +70,6 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Middle Column: Activity */}
                     <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="group border border-gray-100 p-8 hover:border-black transition-all cursor-pointer relative overflow-hidden">
                             <Package className="mb-6 group-hover:scale-110 transition-transform" size={24} />

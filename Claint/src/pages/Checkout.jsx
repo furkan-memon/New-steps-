@@ -6,7 +6,6 @@ export default function Checkout() {
     <section className="min-h-screen bg-white py-20 px-6">
       <div className="container  mx-auto grid lg:grid-cols-12 gap-16">
         
-        {/* --- LEFT SIDE: FORMS --- */}
         <div className="lg:col-span-7 space-y-12">
           
           <header className="border-b border-gray-100 pb-8">
@@ -18,7 +17,6 @@ export default function Checkout() {
             </h1>
           </header>
 
-          {/* Contact Section */}
           <section className="space-y-6 text-left">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-6 h-6 rounded-full bg-black text-white text-[10px] flex items-center justify-center font-black">1</span>
@@ -32,7 +30,6 @@ export default function Checkout() {
             />
           </section>
 
-          {/* Shipping Section */}
           <section className="space-y-6 text-left pt-8">
              <div className="flex items-center gap-3 mb-6">
               <span className="w-6 h-6 rounded-full bg-black text-white text-[10px] flex items-center justify-center font-black">2</span>
@@ -61,7 +58,6 @@ export default function Checkout() {
             <input className="w-full border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black" placeholder="PHONE NUMBER" />
           </section>
 
-          {/* Payment Section */}
           <section className="pt-8 text-left">
             <div className="flex items-center gap-3 mb-8">
               <span className="w-6 h-6 rounded-full bg-black text-white text-[10px] flex items-center justify-center font-black">3</span>
@@ -99,14 +95,12 @@ export default function Checkout() {
           </div>
         </div>
 
-        {/* --- RIGHT SIDE: SUMMARY --- */}
         <div className="lg:col-span-5">
           <div className="bg-zinc-50 p-10 border border-gray-100 sticky top-10">
             <h3 className="text-[11px] font-black tracking-[0.4em] uppercase text-black mb-10 border-b border-gray-200 pb-4 text-left">
               Order Summary
             </h3>
 
-            {/* Product List */}
             <div className="space-y-8 mb-10 text-left">
               <div className="flex gap-6 items-center">
                 <div className="relative">
@@ -126,7 +120,6 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Promo Code */}
             <div className="flex gap-4 border-b border-gray-200 pb-8 mb-8">
               <input
                 placeholder="PROMO CODE"
@@ -137,7 +130,6 @@ export default function Checkout() {
               </button>
             </div>
 
-            {/* Totals */}
             <div className="space-y-6 text-left">
               <div className="flex justify-between text-[10px] font-black text-gray-400 uppercase tracking-widest">
                 <span>Subtotal</span>

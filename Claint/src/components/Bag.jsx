@@ -16,7 +16,6 @@ export default function CartPage() {
   return (
     <div className="container mx-auto px-6 py-16 bg-white min-h-screen">
       
-      {/* --- HEADER --- */}
       <div className="mb-16 border-b border-gray-100 pb-10">
         <span className="text-[10px] tracking-[0.5em] text-gray-400 uppercase font-black block mb-2 text-left">
           Shopping Bag
@@ -31,16 +30,13 @@ export default function CartPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
         
-        {/* --- LEFT: ITEM LIST --- */}
         <div className="lg:col-span-8 space-y-10">
           {cart.map((item) => (
             <div key={item.id} className="flex flex-col md:flex-row gap-8 border-b border-gray-50 pb-10 group">
-              {/* Product Image */}
               <div className="w-full md:w-40 h-48 bg-gray-50 flex items-center justify-center p-4 border border-gray-100 group-hover:bg-white transition-all duration-500">
                 <img src={item.img} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700" alt={item.name} />
               </div>
 
-              {/* Product Details */}
               <div className="flex-1 flex flex-col justify-between py-2 text-left">
                 <div className="flex justify-between items-start">
                   <div>
@@ -58,7 +54,6 @@ export default function CartPage() {
                 </div>
 
                 <div className="flex items-center justify-between mt-8 md:mt-0">
-                  {/* Quantity Selector */}
                   <div className="flex items-center border border-black px-4 py-2 hover:bg-black hover:text-white transition-all group/btn">
                     <button className="text-gray-400 group-hover/btn:text-white/50"><Minus size={14} /></button>
                     <span className="px-8 text-xs font-black">{item.qty}</span>
@@ -75,7 +70,6 @@ export default function CartPage() {
           ))}
         </div>
 
-        {/* --- RIGHT: SUMMARY CARD --- */}
         <div className="lg:col-span-4">
           <div className="bg-zinc-50 p-10 border border-gray-100 sticky top-32">
             <h3 className="text-[11px] font-black tracking-[0.4em] uppercase text-black mb-8 border-b border-gray-200 pb-4">
@@ -105,7 +99,6 @@ export default function CartPage() {
               <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-500" />
             </Link>
 
-            {/* Boutique Trust Badges */}
             <div className="mt-10 space-y-4 pt-6 border-t border-gray-100">
               <div className="flex items-center gap-3 text-gray-400">
                 <ShieldCheck size={16} strokeWidth={1.5} />
@@ -121,7 +114,6 @@ export default function CartPage() {
 
       </div>
 
-      {/* Footer link back to shop */}
       <div className="mt-20 text-center">
          <Link to="/collection" className="text-[10px] font-black tracking-[0.3em] uppercase border-b border-black pb-1 hover:text-gray-300 hover:border-gray-100 transition-all">
            Continue Browsing Collection

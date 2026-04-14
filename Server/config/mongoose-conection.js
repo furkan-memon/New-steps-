@@ -1,4 +1,4 @@
-require('dotenv').config(); // <--- ADD THIS AT THE TOP
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 const clientOptions = { 
@@ -7,7 +7,6 @@ const clientOptions = {
 
 async function connectDB() {
   try {
-    // Debugging: This will tell us if the variable is actually loading
     if (!process.env.MONGODB_URI) {
         throw new Error("MONGODB_URI is missing from your .env file!");
     }
